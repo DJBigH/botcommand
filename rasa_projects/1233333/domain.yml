@@ -1,0 +1,78 @@
+---
+version: '3.1'
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- ask_weather
+- ask_time
+- ask_name
+- ask_function
+- ask_products
+- search_product
+- custom_intent_8
+- custom_intent_9
+- custom_intent_10
+- custom_intent_11
+- custom_intent_12
+- custom_intent_13
+- custom_intent_14
+- custom_intent_15
+- custom_intent_16
+- custom_intent_22
+entities:
+- keyword
+- product_name
+responses:
+  utter_greet:
+  - text: Chào bạn! Tôi là trợ lý ảo Rasa, bạn cần giúp gì?
+  utter_cheer_up:
+  - text: Tạm biệt bạn! Chúc một ngày tốt lành.
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Tôi có thể giúp gì cho bạn
+  utter_happy:
+  - text: Tuyệt vời 100%
+  utter_goodbye:
+  - text: Tạm biệt
+  utter_iamabot:
+  - text: Tôi là người máy, tên là Rasa
+  utter_ask_weather:
+  - text: Tôi chưa được kết nối với API thời tiết. Nhưng bạn có thể kiểm tra ứng dụng
+      thời tiết nhé!
+  utter_ask_time:
+  - text: Tôi chưa xem được giờ hiện tại, bạn thử nhìn đồng hồ nhé!
+  utter_ask_name:
+  - text: Tôi là trợ lý ảo Rasa, rất vui được giúp bạn!
+  utter_ask_function:
+  - text: Tôi có thể trả lời câu hỏi, trò chuyện cơ bản và tích hợp với hệ thống của
+      bạn.
+  utter_ask_keyword:
+  - text: Bạn muốn tìm sản phẩm gì?
+  utter_custom_intent_8:
+  - text: hehe
+  utter_custom_intent_9:
+  - text: '123'
+  utter_custom_intent_10:
+  - text: Chao bạn
+  utter_custom_intent_11:
+  - text: bruh
+  utter_custom_intent_12:
+  - text: chao
+  utter_custom_intent_13:
+  - text: ok
+  utter_custom_intent_14:
+  - text: blabla
+  utter_custom_intent_15:
+  - text: Địt mẹ thằng wibu
+  utter_custom_intent_16:
+  - text: TÔi LÀ AI
+  utter_custom_intent_22:
+  - text: test
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

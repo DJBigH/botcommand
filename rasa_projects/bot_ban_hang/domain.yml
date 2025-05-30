@@ -1,0 +1,67 @@
+---
+version: '3.1'
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- custom_intent_17
+- custom_intent_18
+- custom_intent_19
+- custom_intent_20
+- custom_intent_21
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_custom_intent_17:
+  - text: Xin chào! Bạn cần giúp gì hôm nay?
+  utter_custom_intent_18:
+  - text: |-
+      Văn hóa Việt Nam rất phong phú và đa dạng, bao gồm nhiều yếu tố như:
+
+      1. Ngôn ngữ
+      Tiếng Việt là ngôn ngữ chính, sử dụng hệ chữ cái Latinh với các dấu thanh điệu.
+      2. Ẩm thực
+      Ẩm thực Việt Nam nổi tiếng với các món như phở, bún, cơm tấm, và bánh mì. Các món ăn thường kết hợp nhiều gia vị tươi mát.
+      3. Trang phục truyền thống
+      Áo dài là trang phục truyền thống, biểu tượng của sự duyên dáng và thanh lịch.
+      4. Tín ngưỡng và tôn giáo
+      Người Việt có nhiều tín ngưỡng, bao gồm thờ cúng tổ tiên, Phật giáo, Thiên Chúa giáo và các tôn giáo khác.
+      5. Lễ hội
+      Có nhiều lễ hội đặc sắc như Tết Nguyên Đán, lễ hội Trung Thu, và các lễ hội mùa vụ.
+      6. Nghệ thuật
+      Nghệ thuật truyền thống phong phú với múa rối nước, ca trù, và nhạc dân tộc.
+      Nếu bạn muốn tìm hiểu sâu hơn về bất kỳ khía cạnh nào, hãy cho tôi biết!
+  utter_custom_intent_19:
+  - text: |-
+      Văn hóa Việt Nam rất đẹp và phong phú. Với những phong tục tập quán độc đáo, nghệ thuật truyền thống, và ẩm thực hấp dẫn, nó tạo nên một bức tranh đa dạng và sống động.
+
+      Một số điểm đẹp nổi bật:
+      Áo dài: Sự duyên dáng và thanh lịch trong trang phục truyền thống.
+      Nghệ thuật múa rối nước: Một hình thức nghệ thuật độc đáo, thể hiện sự khéo léo và sáng tạo.
+      Lễ hội: Những lễ hội màu sắc, âm thanh rộn ràng và không khí vui tươi.
+      Cảnh quan thiên nhiên: Từ ruộng bậc thang ở Sapa đến vịnh Hạ Long hùng vĩ.
+      Tất cả những yếu tố này tạo nên một văn hóa không chỉ đẹp mà còn đầy ý nghĩa. Bạn có muốn tìm hiểu thêm về điều gì cụ thể không?
+  utter_custom_intent_20:
+  - text: Tôi là mô hình được sáng tạo bởi rasa và phát triển bởi BigK. Tôi không
+      có ý thức hay bản ngã, mà chỉ là một công cụ hỗ trợ thông tin và trả lời câu
+      hỏi của bạn. Nếu bạn có thêm bất kỳ câu hỏi nào, đừng ngần ngại!
+  utter_custom_intent_21:
+  - text: Tạm biệt bạn rất mong sẽ được hỗ trợ bạn trong tương lai
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

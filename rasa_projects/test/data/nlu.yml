@@ -1,0 +1,5 @@
+version: "3.0"
+nlu:
+- intent: custom_intent_1
+  examples: |
+    - 123

@@ -1,0 +1,6 @@
+version: "3.0"
+intents:
+  - custom_intent_1
+responses:
+  utter_custom_intent_1:
+  - text: "123"
