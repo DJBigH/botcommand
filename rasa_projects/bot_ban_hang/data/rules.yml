@@ -29,3 +29,11 @@ rules:
   steps:
   - intent: custom_intent_21
   - action: utter_custom_intent_21
+- rule: rule_custom_intent_23
+  steps:
+  - intent: custom_intent_23
+  - action: utter_custom_intent_23
+- rule: rule_custom_intent_24
+  steps:
+  - intent: custom_intent_24
+  - action: utter_custom_intent_24
