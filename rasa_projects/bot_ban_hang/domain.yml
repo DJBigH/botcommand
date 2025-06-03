@@ -13,6 +13,8 @@ intents:
 - custom_intent_19
 - custom_intent_20
 - custom_intent_21
+- custom_intent_23
+- custom_intent_24
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -62,6 +64,21 @@ responses:
       hỏi của bạn. Nếu bạn có thêm bất kỳ câu hỏi nào, đừng ngần ngại!
   utter_custom_intent_21:
   - text: Tạm biệt bạn rất mong sẽ được hỗ trợ bạn trong tương lai
+  utter_custom_intent_23:
+  - text: Tất nhiên rồi! Bạn muốn nghe chuyện theo thể loại gì nhỉ?
+  utter_custom_intent_24:
+  - text: |-
+      Ok. Câu chuyện hài hước:
+
+      Có một ông cụ vào quán cà phê và hỏi:
+
+      Cho tôi một ly cà phê, nhưng không đường, không sữa nhé!
+      Người phục vụ đáp:
+
+      Vậy ông uống nước lọc thôi ạ?
+      Ông cụ cười:
+
+      Đúng rồi, nhưng tôi thích gọi là \"cà phê không đường, không sữa\" cho sang!
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

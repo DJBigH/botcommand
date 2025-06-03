@@ -53,6 +53,7 @@
       <ul class="list-group list-group-flush">
         <% @prompts.each do |p| %>
           <li class="list-group-item">
+            <strong>STT: </strong> <%= p.id %><br>
             <strong>Q:</strong> <%= p.question %><br>
             <strong>A:</strong> <%= p.answer %>
           </li>

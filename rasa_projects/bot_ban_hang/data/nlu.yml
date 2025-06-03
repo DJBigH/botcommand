@@ -97,3 +97,9 @@ nlu:
 - intent: custom_intent_21
   examples: |
     - tạm biệt
+- intent: custom_intent_23
+  examples: |
+    - Bạn có thể kể cho tôi một câu chuyện không?
+- intent: custom_intent_24
+  examples: |
+    - Tôi muốn nghe một câu chuyện hài hước.

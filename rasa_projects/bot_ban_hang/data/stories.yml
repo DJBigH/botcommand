@@ -45,3 +45,11 @@ stories:
   steps:
   - intent: custom_intent_21
   - action: utter_custom_intent_21
+- story: story_custom_intent_23
+  steps:
+  - intent: custom_intent_23
+  - action: utter_custom_intent_23
+- story: story_custom_intent_24
+  steps:
+  - intent: custom_intent_24
+  - action: utter_custom_intent_24

@@ -1,0 +1,16 @@
+{
+  "0": "affirm",
+  "1": "bot_challenge",
+  "2": "custom_intent_17",
+  "3": "custom_intent_18",
+  "4": "custom_intent_19",
+  "5": "custom_intent_20",
+  "6": "custom_intent_21",
+  "7": "custom_intent_23",
+  "8": "custom_intent_24",
+  "9": "deny",
+  "10": "goodbye",
+  "11": "greet",
+  "12": "mood_great",
+  "13": "mood_unhappy"
+}
