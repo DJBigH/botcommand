@@ -1,0 +1,184 @@
+---
+version: '3.1'
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- custom_intent_25
+- custom_intent_26
+- custom_intent_27
+- custom_intent_28
+- custom_intent_29
+- custom_intent_30
+- custom_intent_31
+- custom_intent_32
+- custom_intent_33
+- custom_intent_34
+- custom_intent_35
+- custom_intent_36
+- custom_intent_37
+- custom_intent_38
+- custom_intent_39
+- custom_intent_40
+- custom_intent_41
+- custom_intent_42
+- custom_intent_43
+- custom_intent_44
+- custom_intent_45
+- custom_intent_46
+- custom_intent_47
+- custom_intent_48
+- custom_intent_49
+- custom_intent_50
+- custom_intent_51
+- custom_intent_52
+- custom_intent_53
+- custom_intent_54
+- custom_intent_55
+- custom_intent_56
+- custom_intent_57
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_custom_intent_25:
+  - text: Xin chào! Mình là Khánh – nhân viên ảo bán hàng của cửa hàng. Khánh rất
+      vui được hỗ trợ bạn tìm sản phẩm phù hợp nhất. Bạn cần tư vấn về điện thoại,
+      giá cả hay chương trình khuyến mãi nào không ạ?
+  utter_custom_intent_26:
+  - text: Bên em có các hãng như Apple, Samsung, Xiaomi, Oppo, Vivo và nhiều hãng
+      khác nữa ạ.
+  utter_custom_intent_27:
+  - text: Hiện tại, các mẫu như Samsung Galaxy M54, Xiaomi Redmi Note 13 Pro và iPhone
+      15 Pro Max đều có pin rất tốt, dùng cả ngày dài không lo hết.
+  utter_custom_intent_28:
+  - text: Dạ, anh/chị có thể tham khảo iPhone 15 Pro Max, Samsung Galaxy S24 Ultra
+      hoặc Google Pixel 8 Pro – đều là các dòng chuyên chụp ảnh đẹp ạ.
+  utter_custom_intent_29:
+  - text: Bên em có hỗ trợ trả góp 0% qua thẻ tín dụng hoặc qua các đơn vị tài chính
+      như Home Credit, FE Credit ạ.
+  utter_custom_intent_30:
+  - text: Dạ, bên em hỗ trợ thanh toán qua tiền mặt, chuyển khoản, thẻ tín dụng và
+      ví điện tử như Momo, ZaloPay, ShopeePay ạ.
+  utter_custom_intent_31:
+  - text: Anh/chị có thể ghé showroom bên em tại số 123 Đường ABC, Quận 1, TP.HCM
+      để xem và trải nghiệm sản phẩm ạ.
+  utter_custom_intent_32:
+  - text: Tất cả sản phẩm bên em đều bảo hành chính hãng 12 tháng. Một số dòng còn
+      hỗ trợ bảo hành lên đến 24 tháng ạ.
+  utter_custom_intent_33:
+  - text: Dạ có ạ. Anh/chị có thể tham khảo các mẫu như Xiaomi Redmi 13C, Realme C55
+      hoặc Samsung Galaxy A04s ạ.
+  utter_custom_intent_34:
+  - text: Tại TP.HCM, Hà Nội thì giao trong ngày. Các tỉnh khác thì nhận hàng từ 2–5
+      ngày tùy khu vực ạ.
+  utter_custom_intent_35:
+  - text: Dạ có ạ. Anh/chị có thể mang máy cũ đến để định giá và đổi lên máy mới,
+      bù thêm chi phí chênh lệch ạ.
+  utter_custom_intent_36:
+  - text: Tôi là Bot nên không hề có cảm xúc hay sức khoẻ
+  utter_custom_intent_37:
+  - text: Dạ có ạ! Bên em hiện có các dòng iPhone từ iPhone 11 đến iPhone 15 Pro Max.
+      Anh/chị muốn tham khảo dòng nào ạ?
+  utter_custom_intent_38:
+  - text: Dạ có ạ! Bên em có máy Like New, máy 99% với bảo hành từ 6 tháng đến 1 năm.
+      Muốn tìm dòng máy nào ạ?
+  utter_custom_intent_39:
+  - text: Dạ có ạ! Bên em hỗ trợ kiểm tra hàng trước khi thanh toán đối với đơn giao
+      tận nơi.
+  utter_custom_intent_40:
+  - text: Dạ có các mẫu như Realme C55, Xiaomi Redmi 12, và Samsung A04 đều dưới 5
+      triệu ạ.
+  utter_custom_intent_41:
+  - text: Hôm nay bên em có khuyến mãi tặng tai nghe Bluetooth khi mua điện thoại
+      từ 7 triệu trở lên và miễn phí giao hàng toàn quốc ạ.
+  utter_custom_intent_42:
+  - text: "Dạ, bên em hiện đang có các dòng iPhone từ đời X đến 15 Pro Max, em xin
+      báo giá tham khảo như sau ạ:\n\nDòng iPhone\t               Giá tham khảo (VNĐ)\niPhone
+      X (64GB)\t        từ 5.990.000\niPhone XR (64GB)\t        từ 6.790.000\niPhone
+      XS (64GB)\t        từ 6.990.000\niPhone 11 (64GB)\t        từ 8.490.000\niPhone
+      12 (64GB)\t        từ 10.990.000\niPhone 12 Pro (128GB)\ttừ 13.990.000\niPhone
+      13 (128GB)\t        từ 14.990.000\niPhone 13 Pro (128GB)\ttừ 18.990.000\niPhone
+      14 (128GB)\t        từ 17.990.000\niPhone 14 Pro (128GB)\ttừ 21.990.000\niPhone
+      15 (128GB)\t        từ 20.990.000\niPhone 15 Pro (128GB)\ttừ 26.990.000\niPhone
+      15 Pro Max (256GB)\ttừ 31.990.000\n\n\U0001F4A1 Giá có thể thay đổi theo dung
+      lượng bộ nhớ và tình trạng máy (mới hay Like New). Anh/chị muốn em hỗ trợ dòng
+      nào cụ thể hơn không ạ?"
+  utter_custom_intent_43:
+  - text: "Dạ, bên em đang có nhiều dòng Samsung từ tầm trung đến cao cấp. Em xin
+      báo giá tham khảo như sau ạ:\n\nDòng Samsung\t                     Giá tham
+      khảo (VNĐ)\nGalaxy A14 (4GB/128GB)\t     từ 3.490.000\nGalaxy A24 (6GB/128GB)\t
+      \    từ 4.690.000\nGalaxy A34 5G (8GB/128GB)\t     từ 6.990.000\nGalaxy A54
+      5G (8GB/256GB)\t     từ 8.990.000\nGalaxy S20 FE (8GB/128GB)\t     từ 7.990.000\nGalaxy
+      S21 FE (8GB/256GB)\t     từ 9.990.000\nGalaxy S22 (8GB/128GB)\t     từ 12.990.000\nGalaxy
+      S23 (8GB/128GB)\t     từ 16.990.000\nGalaxy S23 Ultra (12GB/256GB)\ttừ 24.990.000\nGalaxy
+      S24 (8GB/256GB)\t     từ 21.990.000\nGalaxy S24 Ultra (12GB/256GB)\ttừ 31.990.000\nGalaxy
+      Z Flip5 (8GB/256GB)\t      từ 20.990.000\nGalaxy Z Fold5 (12GB/256GB)     từ
+      35.990.000\n\n\U0001F4A1 Giá trên có thể thay đổi theo thời điểm và dung lượng
+      bộ nhớ. Anh/chị muốn em hỗ trợ tư vấn dòng nào cụ thể không ạ?"
+  utter_custom_intent_44:
+  - text: Dạ, anh/chị vui lòng cung cấp mã đơn hàng hoặc số điện thoại đặt hàng, bên
+      em sẽ hỗ trợ bảo hành ngay ạ.
+  utter_custom_intent_45:
+  - text: Anh/chị vui lòng cung cấp mã đơn hàng, em sẽ kiểm tra trạng thái giao hàng
+      ngay cho mình nhé.
+  utter_custom_intent_46:
+  - text: Dạ được ạ! Trong vòng 7 ngày kể từ ngày nhận hàng, anh/chị có thể đổi sản
+      phẩm nếu chưa qua sử dụng và còn nguyên hộp ạ.
+  utter_custom_intent_47:
+  - text: Em xin lỗi vì sự cố này. Anh/chị vui lòng gửi hình ảnh sản phẩm đã nhận,
+      bên em sẽ xử lý đổi đúng hàng trong thời gian sớm nhất.
+  utter_custom_intent_48:
+  - text: Đơn hàng trên 500.000 VNĐ sẽ được miễn phí vận chuyển toàn quốc ạ.
+  utter_custom_intent_49:
+  - text: Dạ, anh/chị vui lòng cung cấp mã đơn hàng và lý do hủy, bên em sẽ hỗ trợ
+      hủy đơn nếu chưa giao hàng ạ.
+  utter_custom_intent_50:
+  - text: 'Anh/chị có thể liên hệ qua hotline: 1900 1234 hoặc nhắn trực tiếp trên
+      Fanpage, bên em sẽ hỗ trợ ngay ạ.'
+  utter_custom_intent_51:
+  - text: Bên em có các hãng như Apple, Samsung, Xiaomi, Oppo, Vivo và nhiều hãng
+      khác nữa ạ.
+  utter_custom_intent_52:
+  - text: Dạ có ạ! Bên em hiện có các dòng SamSung từ tầm trung đến cao cấp như S
+      và Z series
+  utter_custom_intent_53:
+  - text: Rất hân hạnh được phục vụ ạ. Chúc anh/chị một ngày tốt lành!
+  utter_custom_intent_54:
+  - text: Tạm biệt anh/chị ạ! Nếu cần hỗ trợ gì thêm, cứ nhắn em nha!
+  utter_custom_intent_55:
+  - text: Mình là Khánh – nhân viên ảo bán hàng của cửa hàng. Khánh rất vui được hỗ
+      trợ bạn tìm sản phẩm phù hợp nhất. Bạn cần tư vấn về điện thoại, giá cả hay
+      chương trình khuyến mãi nào không ạ?
+  utter_custom_intent_56:
+  - text: "Dạ, bên em đang có nhiều dòng Samsung từ tầm trung đến cao cấp. Em xin
+      báo giá tham khảo như sau ạ: Dòng Samsung Giá tham khảo (VNĐ) Galaxy A14 (4GB/128GB)
+      từ 3.490.000 Galaxy A24 (6GB/128GB) từ 4.690.000 Galaxy A34 5G (8GB/128GB) từ
+      6.990.000 Galaxy A54 5G (8GB/256GB) từ 8.990.000 Galaxy S20 FE (8GB/128GB) từ
+      7.990.000 Galaxy S21 FE (8GB/256GB) từ 9.990.000 Galaxy S22 (8GB/128GB) từ 12.990.000
+      Galaxy S23 (8GB/128GB) từ 16.990.000 Galaxy S23 Ultra (12GB/256GB) từ 24.990.000
+      Galaxy S24 (8GB/256GB) từ 21.990.000 Galaxy S24 Ultra (12GB/256GB) từ 31.990.000
+      Galaxy Z Flip5 (8GB/256GB) từ 20.990.000 Galaxy Z Fold5 (12GB/256GB) từ 35.990.000
+      \U0001F4A1 Giá trên có thể thay đổi theo thời điểm và dung lượng bộ nhớ. Anh/chị
+      muốn em hỗ trợ tư vấn dòng nào cụ thể không ạ?\n"
+  utter_custom_intent_57:
+  - text: Có mặt. Mình là Khánh – nhân viên ảo bán hàng của cửa hàng. Khánh rất vui
+      được hỗ trợ bạn tìm sản phẩm phù hợp nhất. Bạn cần tư vấn về điện thoại, giá
+      cả hay chương trình khuyến mãi nào không ạ?
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,143 @@
+---
+version: '3.1'
+rules:
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+- rule: rule_custom_intent_25
+  steps:
+  - intent: custom_intent_25
+  - action: utter_custom_intent_25
+- rule: rule_custom_intent_26
+  steps:
+  - intent: custom_intent_26
+  - action: utter_custom_intent_26
+- rule: rule_custom_intent_27
+  steps:
+  - intent: custom_intent_27
+  - action: utter_custom_intent_27
+- rule: rule_custom_intent_28
+  steps:
+  - intent: custom_intent_28
+  - action: utter_custom_intent_28
+- rule: rule_custom_intent_29
+  steps:
+  - intent: custom_intent_29
+  - action: utter_custom_intent_29
+- rule: rule_custom_intent_30
+  steps:
+  - intent: custom_intent_30
+  - action: utter_custom_intent_30
+- rule: rule_custom_intent_31
+  steps:
+  - intent: custom_intent_31
+  - action: utter_custom_intent_31
+- rule: rule_custom_intent_32
+  steps:
+  - intent: custom_intent_32
+  - action: utter_custom_intent_32
+- rule: rule_custom_intent_33
+  steps:
+  - intent: custom_intent_33
+  - action: utter_custom_intent_33
+- rule: rule_custom_intent_34
+  steps:
+  - intent: custom_intent_34
+  - action: utter_custom_intent_34
+- rule: rule_custom_intent_35
+  steps:
+  - intent: custom_intent_35
+  - action: utter_custom_intent_35
+- rule: rule_custom_intent_36
+  steps:
+  - intent: custom_intent_36
+  - action: utter_custom_intent_36
+- rule: rule_custom_intent_37
+  steps:
+  - intent: custom_intent_37
+  - action: utter_custom_intent_37
+- rule: rule_custom_intent_38
+  steps:
+  - intent: custom_intent_38
+  - action: utter_custom_intent_38
+- rule: rule_custom_intent_39
+  steps:
+  - intent: custom_intent_39
+  - action: utter_custom_intent_39
+- rule: rule_custom_intent_40
+  steps:
+  - intent: custom_intent_40
+  - action: utter_custom_intent_40
+- rule: rule_custom_intent_41
+  steps:
+  - intent: custom_intent_41
+  - action: utter_custom_intent_41
+- rule: rule_custom_intent_42
+  steps:
+  - intent: custom_intent_42
+  - action: utter_custom_intent_42
+- rule: rule_custom_intent_43
+  steps:
+  - intent: custom_intent_43
+  - action: utter_custom_intent_43
+- rule: rule_custom_intent_44
+  steps:
+  - intent: custom_intent_44
+  - action: utter_custom_intent_44
+- rule: rule_custom_intent_45
+  steps:
+  - intent: custom_intent_45
+  - action: utter_custom_intent_45
+- rule: rule_custom_intent_46
+  steps:
+  - intent: custom_intent_46
+  - action: utter_custom_intent_46
+- rule: rule_custom_intent_47
+  steps:
+  - intent: custom_intent_47
+  - action: utter_custom_intent_47
+- rule: rule_custom_intent_48
+  steps:
+  - intent: custom_intent_48
+  - action: utter_custom_intent_48
+- rule: rule_custom_intent_49
+  steps:
+  - intent: custom_intent_49
+  - action: utter_custom_intent_49
+- rule: rule_custom_intent_50
+  steps:
+  - intent: custom_intent_50
+  - action: utter_custom_intent_50
+- rule: rule_custom_intent_51
+  steps:
+  - intent: custom_intent_51
+  - action: utter_custom_intent_51
+- rule: rule_custom_intent_52
+  steps:
+  - intent: custom_intent_52
+  - action: utter_custom_intent_52
+- rule: rule_custom_intent_53
+  steps:
+  - intent: custom_intent_53
+  - action: utter_custom_intent_53
+- rule: rule_custom_intent_54
+  steps:
+  - intent: custom_intent_54
+  - action: utter_custom_intent_54
+- rule: rule_custom_intent_55
+  steps:
+  - intent: custom_intent_55
+  - action: utter_custom_intent_55
+- rule: rule_custom_intent_56
+  steps:
+  - intent: custom_intent_56
+  - action: utter_custom_intent_56
+- rule: rule_custom_intent_57
+  steps:
+  - intent: custom_intent_57
+  - action: utter_custom_intent_57

@@ -1,0 +1,183 @@
+version: '3.1'
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: custom_intent_25
+  examples: |
+    - xin chào
+- intent: custom_intent_26
+  examples: |
+    - Bạn có những hãng điện thoại nào?
+- intent: custom_intent_27
+  examples: |
+    - Điện thoại nào pin trâu nhất?
+- intent: custom_intent_28
+  examples: |
+    - tôi muốn mua điện thoại chụp ảnh đẹp, nên chọn loại nào?
+- intent: custom_intent_29
+  examples: |
+    - Shop có hỗ trợ trả góp không?
+- intent: custom_intent_30
+  examples: |
+    - Tôi có thể thanh toán bằng hình thức nào?
+- intent: custom_intent_31
+  examples: |
+    - Tôi muốn xem điện thoại trực tiếp thì đến đâu?
+- intent: custom_intent_32
+  examples: |
+    - Thời gian bảo hành là bao lâu?
+- intent: custom_intent_33
+  examples: |
+    - Có mẫu điện thoại nào dưới 5 triệu không?
+- intent: custom_intent_34
+  examples: |
+    - Giao hàng bao lâu thì nhận được?
+- intent: custom_intent_35
+  examples: |
+    - Shop có thu cũ đổi mới không?
+- intent: custom_intent_36
+  examples: |
+    - Bạn có khoẻ không
+- intent: custom_intent_37
+  examples: |
+    - Bạn có điện thoại iPhone không?
+- intent: custom_intent_38
+  examples: |
+    - Shop có bán điện thoại cũ không?
+- intent: custom_intent_39
+  examples: |
+    - Mua online có được kiểm tra hàng không?
+- intent: custom_intent_40
+  examples: |
+    - Có điện thoại nào dưới 5 triệu không?
+- intent: custom_intent_41
+  examples: |
+    - Mua hôm nay có khuyến mãi gì không?
+- intent: custom_intent_42
+  examples: |
+    - Giá cả của iPhone là bao nhiêu?
+- intent: custom_intent_43
+  examples: |
+    - Giá của điện thoại Samsung là bao nhiêu?
+- intent: custom_intent_44
+  examples: |
+    - Tôi cần hỗ trợ bảo hành sản phẩm thì làm thế nào?
+- intent: custom_intent_45
+  examples: |
+    - Làm sao để biết đơn hàng của tôi đã được giao chưa?
+- intent: custom_intent_46
+  examples: |
+    - Tôi muốn đổi sản phẩm thì có được không?
+- intent: custom_intent_47
+  examples: |
+    - Tôi bị giao sai sản phẩm thì xử lý thế nào?
+- intent: custom_intent_48
+  examples: |
+    - Phí vận chuyển là bao nhiêu?
+- intent: custom_intent_49
+  examples: |
+    - Tôi muốn hủy đơn hàng thì làm sao?
+- intent: custom_intent_50
+  examples: |
+    - Tôi cần tư vấn thêm thì liên hệ qua đâu?
+- intent: custom_intent_51
+  examples: |
+    - tôi muốn xem sản phẩm
+- intent: custom_intent_52
+  examples: |
+    - Bạn có điện thoại Samsung không?
+- intent: custom_intent_53
+  examples: |
+    - Cảm ơn
+- intent: custom_intent_54
+  examples: |
+    - tạm biệt
+- intent: custom_intent_55
+  examples: |
+    - bạn là ai
+- intent: custom_intent_56
+  examples: |
+    - giá samsung
+- intent: custom_intent_57
+  examples: |
+    - tôi cần hỗ trợ
