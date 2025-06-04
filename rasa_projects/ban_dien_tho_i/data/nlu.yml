@@ -181,3 +181,84 @@ nlu:
 - intent: custom_intent_57
   examples: |
     - tôi cần hỗ trợ
+- intent: custom_intent_58
+  examples: |
+    - Tôi cần mua sản phẩm
+- intent: custom_intent_59
+  examples: |
+    - bên bạn có những sản phẩm gì?
+- intent: custom_intent_60
+  examples: |
+    - iPhone X có gì nổi bật khi ra mắt?
+- intent: custom_intent_61
+  examples: |
+    - iPhone X hiện tại giá bao nhiêu?
+- intent: custom_intent_62
+  examples: |
+    - Còn dùng iPhone X trong năm 2025 được không?
+- intent: custom_intent_63
+  examples: |
+    - Có iPhone X không?
+- intent: custom_intent_64
+  examples: |
+    - Có iPhone 11 không?
+- intent: custom_intent_65
+  examples: |
+    - cho thông tin về iphone 11
+- intent: custom_intent_66
+  examples: |
+    - cho thông tin iphone 12
+- intent: custom_intent_67
+  examples: |
+    - bên bạn có iphone 12 pro không
+- intent: custom_intent_68
+  examples: |
+    - bên bạn có iphone 12 pro max không
+- intent: custom_intent_69
+  examples: |
+    - cho tôi thông tin về iphone 11 pro
+- intent: custom_intent_70
+  examples: |
+    - cho tôi về iphone 11 pro max
+- intent: custom_intent_71
+  examples: |
+    - cho tôi thông tin về iphone 13
+- intent: custom_intent_72
+  examples: |
+    - cho tôi thông tin về iphone 13 pro
+- intent: custom_intent_73
+  examples: |
+    - cho tôi thông tin về iphone 13 pro max
+- intent: custom_intent_74
+  examples: |
+    - Anh/chị có iPhone 14 không? Giá từng phiên bản và màu sắc thế nào?
+- intent: custom_intent_75
+  examples: |
+    - Anh/chị có iPhone 14 Pro không? Giá và các phiên bản bộ nhớ ra sao?
+- intent: custom_intent_76
+  examples: |
+    - Bên mình có iPhone 14 Pro Max không? Giá từng phiên bản và màu sắc thế nào?
+- intent: custom_intent_77
+  examples: |
+    - Bên mình có iPhone 15 không? Giá và các phiên bản thế nào?
+- intent: custom_intent_78
+  examples: |
+    - Có iPhone 15 Pro không? Giá và phiên bản bộ nhớ ra sao?
+- intent: custom_intent_79
+  examples: |
+    - iPhone 15 Pro Max bên mình có không? Giá từng phiên bản và màu sắc thế nào?
+- intent: custom_intent_80
+  examples: |
+    - Anh/chị có Galaxy A14 không? Giá thế nào?
+- intent: custom_intent_81
+  examples: |
+    - Samsung Galaxy S23 Ultra giá bao nhiêu?
+- intent: custom_intent_82
+  examples: |
+    - Bên mình có Galaxy Z Fold5 không? Giá từng phiên bản thế nào?
+- intent: custom_intent_83
+  examples: |
+    - cho tôi sản phẩm về iphone
+- intent: custom_intent_84
+  examples: |
+    - cho tôi về sản phẩm samsung
