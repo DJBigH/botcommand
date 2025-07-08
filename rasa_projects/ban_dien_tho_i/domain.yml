@@ -68,6 +68,8 @@ intents:
 - custom_intent_82
 - custom_intent_83
 - custom_intent_84
+- custom_intent_85
+- custom_intent_86
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -648,6 +650,11 @@ responses:
       Galaxy Z Flip5 (8GB/256GB) từ 20.990.000 Galaxy Z Fold5 (12GB/256GB) từ 35.990.000
       \U0001F4A1 Giá trên có thể thay đổi theo thời điểm và dung lượng bộ nhớ. Anh/chị
       muốn em hỗ trợ tư vấn dòng nào cụ thể không ạ?"
+  utter_custom_intent_85:
+  - text: "Tôi là chatbot do BigK triển khai, dựa trên nền tảng học máy mã nguồn mở.
+      Mọi kiến thức và phản hồi đều nhằm mang lại trải nghiệm tốt nhất cho bạn.\n\n"
+  utter_custom_intent_86:
+  - text: hehe
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

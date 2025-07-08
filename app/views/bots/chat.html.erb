@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="<%= csrf_meta_tags %>">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+  .message-bubble {
+    margin: 15px 0;
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
+
+  .admin-message {
+    background-color: #ffdddd;
+    color: #a00;
+    text-align: right;
+    float: right;
+    clear: both;
+  }
+
+  .bot-message {
+    background-color: #ddffdd;
+    color: #080;
+    text-align: left;
+    float: left;
+    clear: both;
+  }
+</style>
+
+  </head>
+  <body>
+    <div class="container">
+    <%= link_to "Trở về", bots_path, class: 'btn btn-primary mt-2' %>
+
+    <h2 class="text-center m-2" style="color:red">Chat với bot: <%= @bot.name %></h2>
+
+
+    <div id="chat-box" style="border:1px solid #ccc; padding:15px; height:400px; overflow-y:auto;">
+    </div>
+
+   <div class="d-flex mt-2">
+    <input type="text" id="message-input" placeholder="Nhập tin nhắn..." class="form-control mr-2" onkeypress="handleKeyPress(event)" />
+    <button onclick="sendMessage()" class="btn btn-success">Gửi</button>
+</div>
+      
+    </div>
+
+    <script>
+          const botName = "<%= j @bot.name %>";
+
+        function handleKeyPress(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    sendMessage();
+  }
+}
+    function appendMessage(sender, text) {
+  const chatBox = document.getElementById('chat-box');
+  const msgDiv = document.createElement('div');
+
+  msgDiv.classList.add('message-bubble');
+  msgDiv.classList.add(sender === 'admin' ? 'admin-message' : 'bot-message');
+
+  msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  chatBox.appendChild(msgDiv);
+  chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+
+
+    function sendMessage() {
+  const input = document.getElementById('message-input');
+  const message = input.value.trim();
+  if (!message) return;
+
+  appendMessage('admin', message);
+  input.value = '';
+
+  fetch("http://localhost:5005/webhooks/rest/webhook", {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ sender: 'admin', message: message })
+})
+.then(res => res.json())
+.then(data => {
+  if (Array.isArray(data)) {
+    data.forEach(msg => {
+      if (msg.text) appendMessage(botName, msg.text);
+    });
+  } else {
+    appendMessage(botName, "Phản hồi không hợp lệ.");
+  }
+})
+.catch(err => {
+  console.error("Lỗi khi gửi yêu cầu:", err);
+  appendMessage(botName, "Bot đã bị tắt hoặc lỗi kết nối");
+});
+
+
+  
+    }
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

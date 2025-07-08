@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
     resources :prompts, only: [:destroy]
   end
-  
-
+  # config/routes.rb
+  get '/bots/:id/live-chat', to: 'bots#chat', as: 'bot_chat_ui'
+  post '/bots/:id/chat',      to: 'bots#chat_response', as: 'bot_chat'
 end

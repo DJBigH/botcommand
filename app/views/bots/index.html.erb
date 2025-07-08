@@ -30,6 +30,7 @@
             <th>ID</th>
             <th>Ten Bot</th>
             <th>Thoi gian tao</th>
+            <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
@@ -39,11 +40,12 @@
         <td><%= item.id %></td>
         <td><%= link_to item.name, bot_path(item) %></td>
         <td><%= item.created_at.strftime("%Y-%m-%d") %></td>
+        <td><%= link_to 'Trò chuyện với bot', bot_chat_ui_path(item), class: 'btn btn-success mt-2' %></td>
         </tr>
         <% end %>
         <% else %>
         <tr>
-        <td colspan="3" class="text-center text-muted">Chưa có dữ liệu bot nào</td>
+        <td colspan="4" class="text-center text-muted">Chưa có dữ liệu bot nào</td>
         </tr>
         <% end %>
         </tbody>

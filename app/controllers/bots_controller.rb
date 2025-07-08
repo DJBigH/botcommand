@@ -2,7 +2,7 @@ class BotsController < ApplicationController
   require 'fileutils'
   require 'open3'
 
-  before_action :set_bot, only: [:show, :train, :add_prompt]
+  before_action :set_bot, only: [:show, :train, :add_prompt, :chat]
 
   def index
     @bots = Bot.all
@@ -188,13 +188,17 @@ class BotsController < ApplicationController
 
   def train_bot(path)
     activate_path = "/home/bigk/rasa-env/bin/activate"
+
     bash_command = <<~BASH
       cd "#{path}" && \
       source "#{activate_path}" && \
-      rasa train
+      rasa train && \
+      rasa run --enable-api --cors "*" --debug &
     BASH
-    system("bash", "-c", bash_command)
+
+  system("bash", "-c", bash_command)
   end
+
 
 
   def update_stories_file(bot)
@@ -262,5 +266,54 @@ class BotsController < ApplicationController
 
   File.write(rules_path, rules_data.to_yaml)
   end
+
+
+  def chat_response
+  message = params[:message]
+  Rails.logger.info "ID nhận được: #{params[:id]}"
+  @bot = Bot.find_by(id: params[:id])
+  if @bot.nil?
+    Rails.logger.warn "Không tìm thấy bot với ID #{params[:id]}"
+    redirect_to bots_path, alert: "Không tìm thấy bot!"
+  end
+
+  unless @bot
+    render json: { error: "Không tìm thấy bot!" }, status: :not_found and return
+  end
+
+  Rails.logger.info "Bot tìm thấy: #{@bot.inspect}"
+
+  port = 5005 # hoặc lấy từ @bot nếu bạn lưu port riêng
+
+  uri = URI("http://localhost:#{port}/webhooks/rest/webhook")
+  http = Net::HTTP.new(uri.host, uri.port)
+  req = Net::HTTP::Post.new(uri.path, { 'Content-Type': 'application/json' })
+
+  req.body = {
+    sender: "admin", # người gửi mặc định
+    message: message
+  }.to_json
+
+  begin
+    response = http.request(req)
+    body = JSON.parse(response.body)
+    messages = body.map { |m| m["text"] }.compact
+    render json: { replies: messages }
+  rescue => e
+    Rails.logger.error "Lỗi khi gọi Rasa: #{e.message}"
+    render json: { error: "Không thể kết nối tới Rasa" }, status: :bad_gateway
+  end
+  end
+
+
+  def chat
+  @bot = Bot.find_by(id: params[:id])
+
+  unless @bot
+    Rails.logger.debug "Không tìm thấy bot với ID: #{params[:id]}"
+    redirect_to bots_path, alert: "Không tìm thấy bot"
+  end
+  end
+
 
 end

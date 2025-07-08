@@ -262,3 +262,9 @@ nlu:
 - intent: custom_intent_84
   examples: |
     - cho tôi về sản phẩm samsung
+- intent: custom_intent_85
+  examples: |
+    - bạn được ai sáng tạo ra
+- intent: custom_intent_86
+  examples: |
+    - hehe
