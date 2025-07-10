@@ -1,0 +1,10 @@
+---
+version: '3.0'
+intents:
+- custom_intent_104
+- custom_intent_105
+responses:
+  utter_custom_intent_104:
+  - text: chào
+  utter_custom_intent_105:
+  - text: haha hoho

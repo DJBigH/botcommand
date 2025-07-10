@@ -65,3 +65,11 @@ stories:
   steps:
   - intent: custom_intent_22
   - action: utter_custom_intent_22
+- story: story_custom_intent_87
+  steps:
+  - intent: custom_intent_87
+  - action: utter_custom_intent_87
+- story: story_custom_intent_90
+  steps:
+  - intent: custom_intent_90
+  - action: utter_custom_intent_90

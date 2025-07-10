@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="csrf-token" content="<%= csrf_meta_tags %>">
+    <%= csrf_meta_tags %>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -38,8 +38,8 @@
 
   </head>
   <body>
-    <div class="container">
-    <%= link_to "Trở về", bots_path, class: 'btn btn-primary mt-2' %>
+    <div class="container mt-5" id="chat-container" data-bot-name="<%= j @bot.name %>" data-bot-port="<%= @bot.port %>">
+    <%= link_to "Trở về", bots_path, class: 'btn btn-primary mt-2'%>
 
     <h2 class="text-center m-2" style="color:red">Chat với bot: <%= @bot.name %></h2>
 
@@ -55,62 +55,61 @@
     </div>
 
     <script>
-          const botName = "<%= j @bot.name %>";
+  const chatContainer = document.getElementById("chat-container");
+  const botName = chatContainer.dataset.botName;
+  const port = chatContainer.dataset.botPort;
 
-        function handleKeyPress(event) {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    sendMessage();
-  }
-}
-    function appendMessage(sender, text) {
-  const chatBox = document.getElementById('chat-box');
-  const msgDiv = document.createElement('div');
-
-  msgDiv.classList.add('message-bubble');
-  msgDiv.classList.add(sender === 'admin' ? 'admin-message' : 'bot-message');
-
-  msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
-  chatBox.appendChild(msgDiv);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      sendMessage();
     }
+  }
 
+  function appendMessage(sender, text) {
+    const chatBox = document.getElementById('chat-box');
+    const msgDiv = document.createElement('div');
 
+    msgDiv.classList.add('message-bubble');
+    msgDiv.classList.add(sender === 'admin' ? 'admin-message' : 'bot-message');
 
-    function sendMessage() {
-  const input = document.getElementById('message-input');
-  const message = input.value.trim();
-  if (!message) return;
+    msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
 
-  appendMessage('admin', message);
-  input.value = '';
+  function sendMessage() {
+    const input = document.getElementById('message-input');
+    const message = input.value.trim();
+    if (!message) return;
 
-  fetch("http://localhost:5005/webhooks/rest/webhook", {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ sender: 'admin', message: message })
-})
-.then(res => res.json())
-.then(data => {
-  if (Array.isArray(data)) {
-    data.forEach(msg => {
-      if (msg.text) appendMessage(botName, msg.text);
+    appendMessage('admin', message);
+    input.value = '';
+
+    fetch(`http://localhost:${port}/webhooks/rest/webhook`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ sender: 'admin', message: message })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (Array.isArray(data)) {
+        data.forEach(msg => {
+          if (msg.text) appendMessage(botName, msg.text);
+        });
+      } else {
+        appendMessage(botName, "Phản hồi không hợp lệ.");
+      }
+    })
+    .catch(err => {
+      console.error("Lỗi khi gửi yêu cầu:", err);
+      appendMessage(botName, "Bot đã bị tắt hoặc lỗi kết nối");
     });
-  } else {
-    appendMessage(botName, "Phản hồi không hợp lệ.");
   }
-})
-.catch(err => {
-  console.error("Lỗi khi gửi yêu cầu:", err);
-  appendMessage(botName, "Bot đã bị tắt hoặc lỗi kết nối");
-});
+</script>
 
-
-  
-    }
-    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

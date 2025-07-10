@@ -37,3 +37,11 @@ rules:
   steps:
   - intent: custom_intent_24
   - action: utter_custom_intent_24
+- rule: rule_custom_intent_88
+  steps:
+  - intent: custom_intent_88
+  - action: utter_custom_intent_88
+- rule: rule_custom_intent_89
+  steps:
+  - intent: custom_intent_89
+  - action: utter_custom_intent_89

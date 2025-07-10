@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     member do
       post :add_prompt
       post :train
+      get :run
+      post :stop
     end
     resources :prompts, only: [:destroy]
   end

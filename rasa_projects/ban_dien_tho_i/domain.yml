@@ -70,6 +70,8 @@ intents:
 - custom_intent_84
 - custom_intent_85
 - custom_intent_86
+- custom_intent_91
+- custom_intent_92
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -655,6 +657,10 @@ responses:
       Mọi kiến thức và phản hồi đều nhằm mang lại trải nghiệm tốt nhất cho bạn.\n\n"
   utter_custom_intent_86:
   - text: hehe
+  utter_custom_intent_91:
+  - text: ok
+  utter_custom_intent_92:
+  - text: oke bạn
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
