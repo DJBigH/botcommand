@@ -1,0 +1,11 @@
+---
+version: '3.1'
+stories:
+- story: story_custom_intent_104
+  steps:
+  - intent: custom_intent_104
+  - action: utter_custom_intent_104
+- story: story_custom_intent_105
+  steps:
+  - intent: custom_intent_105
+  - action: utter_custom_intent_105

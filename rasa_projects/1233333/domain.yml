@@ -24,6 +24,8 @@ intents:
 - custom_intent_15
 - custom_intent_16
 - custom_intent_22
+- custom_intent_87
+- custom_intent_90
 entities:
 - keyword
 - product_name
@@ -73,6 +75,13 @@ responses:
   - text: TÔi LÀ AI
   utter_custom_intent_22:
   - text: test
+  utter_custom_intent_87:
+  - text: |-
+      Tất nhiên! Trí tuệ nhân tạo (AI) là khái niệm rộng chỉ các hệ thống có thể \"suy nghĩ\" và đưa ra quyết định như con người.
+      Còn máy học (machine learning) là một nhánh của AI, giúp máy tính học từ dữ liệu mà không cần lập trình rõ từng bước.
+      Nói cách khác, ML là cách để hiện thực hóa AI.
+  utter_custom_intent_90:
+  - text: demo
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_30_043521) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_10_035859) do
   create_table "bots", force: :cascade do |t|
     t.string "name"
     t.string "path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
+    t.integer "port"
   end
 
   create_table "prompts", force: :cascade do |t|

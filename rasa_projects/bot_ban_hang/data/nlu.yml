@@ -103,3 +103,9 @@ nlu:
 - intent: custom_intent_24
   examples: |
     - Tôi muốn nghe một câu chuyện hài hước.
+- intent: custom_intent_88
+  examples: |
+    - hehe
+- intent: custom_intent_89
+  examples: |
+    - test

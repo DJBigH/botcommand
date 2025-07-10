@@ -1,0 +1,23 @@
+version: '3.1'
+nlu:
+- intent: custom_intent_97
+  examples: |
+    - Xin chào
+- intent: custom_intent_98
+  examples: |
+    - Bạn là ai?
+- intent: custom_intent_99
+  examples: |
+    - Hôm nay là thứ mấy?
+- intent: custom_intent_100
+  examples: |
+    - Tạm biệt
+- intent: custom_intent_101
+  examples: |
+    - Cảm ơn bạn
+- intent: custom_intent_102
+  examples: |
+    - anh em mình
+- intent: custom_intent_103
+  examples: |
+    - hehe

@@ -268,3 +268,9 @@ nlu:
 - intent: custom_intent_86
   examples: |
     - hehe
+- intent: custom_intent_91
+  examples: |
+    - test
+- intent: custom_intent_92
+  examples: |
+    - test 1
