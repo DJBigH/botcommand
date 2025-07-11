@@ -265,3 +265,16 @@ rules:
   steps:
   - intent: custom_intent_92
   - action: utter_custom_intent_92
+- rule: Gợi ý sản phẩm hot
+  steps:
+    - intent: ask_hot_products
+    - action: action_dynamic_response
+- rule: Tìm sản phẩm theo khoảng giá
+  steps:
+    - intent: search_by_price
+    - action: action_products_by_price_range
+- rule: Tìm sản phẩm theo từ khóa
+  steps:
+    - intent: search_products
+    - action: action_search_products
+

@@ -72,6 +72,9 @@ intents:
 - custom_intent_86
 - custom_intent_91
 - custom_intent_92
+- ask_hot_products
+- search_products
+- search_by_price
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -664,3 +667,27 @@ responses:
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+actions:
+- action_dynamic_response
+- action_search_products
+- action_products_by_price_range
+slots:
+  keyword:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: keyword
+  min_price:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: min_price
+  max_price:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: max_price
+entities:
+- keyword
+- min_price
+- max_price

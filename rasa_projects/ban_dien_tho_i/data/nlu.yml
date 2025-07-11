@@ -274,3 +274,19 @@ nlu:
 - intent: custom_intent_92
   examples: |
     - test 1
+- intent: ask_hot_products
+  examples: |
+    - Có sản phẩm nào hot không?
+    - Gợi ý sản phẩm bán chạy
+    - Cho mình xem hàng hot
+    - Top sản phẩm nổi bật
+- intent: search_products
+  examples: |
+    - Tôi muốn sản phẩm tên [áo thun](keyword)
+    - Tìm sản phẩm [giày](keyword)
+    - Có bán [mũ bảo hiểm](keyword) không?
+- intent: search_by_price
+  examples: |
+    - Tôi muốn tìm sản phẩm từ [1000000](min_price) đến [5000000](max_price)
+    - Có sản phẩm nào từ [2000000](min_price) đến [9000000](max_price) không?
+    - Sản phẩm nào trong khoảng [1500000](min_price) đến [8000000](max_price)?
