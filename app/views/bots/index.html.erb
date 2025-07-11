@@ -85,9 +85,11 @@
     </tr>
   <% end %>
   </tbody>
-
-
       </table>
+         <div class="d-flex justify-content-end">
+              <%= will_paginate @bots, class: 'pagination justify-content-end' %>
+          </div>
+
       </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
