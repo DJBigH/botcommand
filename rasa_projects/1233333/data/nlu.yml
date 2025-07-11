@@ -106,3 +106,9 @@ nlu:
 - intent: custom_intent_22
   examples: |
     - test
+- intent: custom_intent_87
+  examples: |
+    - Bạn có thể giải thích cho tôi sự khác nhau giữa trí tuệ nhân tạo (AI) và máy học (machine learning) bằng cách đơn giản nhất không?
+- intent: custom_intent_90
+  examples: |
+    - test

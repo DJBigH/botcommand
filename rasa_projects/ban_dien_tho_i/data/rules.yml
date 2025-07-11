@@ -141,3 +141,140 @@ rules:
   steps:
   - intent: custom_intent_57
   - action: utter_custom_intent_57
+- rule: rule_custom_intent_58
+  steps:
+  - intent: custom_intent_58
+  - action: utter_custom_intent_58
+- rule: rule_custom_intent_59
+  steps:
+  - intent: custom_intent_59
+  - action: utter_custom_intent_59
+- rule: rule_custom_intent_60
+  steps:
+  - intent: custom_intent_60
+  - action: utter_custom_intent_60
+- rule: rule_custom_intent_61
+  steps:
+  - intent: custom_intent_61
+  - action: utter_custom_intent_61
+- rule: rule_custom_intent_62
+  steps:
+  - intent: custom_intent_62
+  - action: utter_custom_intent_62
+- rule: rule_custom_intent_63
+  steps:
+  - intent: custom_intent_63
+  - action: utter_custom_intent_63
+- rule: rule_custom_intent_64
+  steps:
+  - intent: custom_intent_64
+  - action: utter_custom_intent_64
+- rule: rule_custom_intent_65
+  steps:
+  - intent: custom_intent_65
+  - action: utter_custom_intent_65
+- rule: rule_custom_intent_66
+  steps:
+  - intent: custom_intent_66
+  - action: utter_custom_intent_66
+- rule: rule_custom_intent_67
+  steps:
+  - intent: custom_intent_67
+  - action: utter_custom_intent_67
+- rule: rule_custom_intent_68
+  steps:
+  - intent: custom_intent_68
+  - action: utter_custom_intent_68
+- rule: rule_custom_intent_69
+  steps:
+  - intent: custom_intent_69
+  - action: utter_custom_intent_69
+- rule: rule_custom_intent_70
+  steps:
+  - intent: custom_intent_70
+  - action: utter_custom_intent_70
+- rule: rule_custom_intent_71
+  steps:
+  - intent: custom_intent_71
+  - action: utter_custom_intent_71
+- rule: rule_custom_intent_72
+  steps:
+  - intent: custom_intent_72
+  - action: utter_custom_intent_72
+- rule: rule_custom_intent_73
+  steps:
+  - intent: custom_intent_73
+  - action: utter_custom_intent_73
+- rule: rule_custom_intent_74
+  steps:
+  - intent: custom_intent_74
+  - action: utter_custom_intent_74
+- rule: rule_custom_intent_75
+  steps:
+  - intent: custom_intent_75
+  - action: utter_custom_intent_75
+- rule: rule_custom_intent_76
+  steps:
+  - intent: custom_intent_76
+  - action: utter_custom_intent_76
+- rule: rule_custom_intent_77
+  steps:
+  - intent: custom_intent_77
+  - action: utter_custom_intent_77
+- rule: rule_custom_intent_78
+  steps:
+  - intent: custom_intent_78
+  - action: utter_custom_intent_78
+- rule: rule_custom_intent_79
+  steps:
+  - intent: custom_intent_79
+  - action: utter_custom_intent_79
+- rule: rule_custom_intent_80
+  steps:
+  - intent: custom_intent_80
+  - action: utter_custom_intent_80
+- rule: rule_custom_intent_81
+  steps:
+  - intent: custom_intent_81
+  - action: utter_custom_intent_81
+- rule: rule_custom_intent_82
+  steps:
+  - intent: custom_intent_82
+  - action: utter_custom_intent_82
+- rule: rule_custom_intent_83
+  steps:
+  - intent: custom_intent_83
+  - action: utter_custom_intent_83
+- rule: rule_custom_intent_84
+  steps:
+  - intent: custom_intent_84
+  - action: utter_custom_intent_84
+- rule: rule_custom_intent_85
+  steps:
+  - intent: custom_intent_85
+  - action: utter_custom_intent_85
+- rule: rule_custom_intent_86
+  steps:
+  - intent: custom_intent_86
+  - action: utter_custom_intent_86
+- rule: rule_custom_intent_91
+  steps:
+  - intent: custom_intent_91
+  - action: utter_custom_intent_91
+- rule: rule_custom_intent_92
+  steps:
+  - intent: custom_intent_92
+  - action: utter_custom_intent_92
+- rule: Gợi ý sản phẩm hot
+  steps:
+    - intent: ask_hot_products
+    - action: action_dynamic_response
+- rule: Tìm sản phẩm theo khoảng giá
+  steps:
+    - intent: search_by_price
+    - action: action_products_by_price_range
+- rule: Tìm sản phẩm theo từ khóa
+  steps:
+    - intent: search_products
+    - action: action_search_products
+

@@ -49,3 +49,11 @@ rules:
   steps:
   - intent: custom_intent_22
   - action: utter_custom_intent_22
+- rule: rule_custom_intent_87
+  steps:
+  - intent: custom_intent_87
+  - action: utter_custom_intent_87
+- rule: rule_custom_intent_90
+  steps:
+  - intent: custom_intent_90
+  - action: utter_custom_intent_90

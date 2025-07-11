@@ -1,0 +1,5 @@
+class AddStatusToBots < ActiveRecord::Migration[8.0]
+  def change
+    add_column :bots, :status, :string
+  end
+end

@@ -41,6 +41,40 @@ intents:
 - custom_intent_55
 - custom_intent_56
 - custom_intent_57
+- custom_intent_58
+- custom_intent_59
+- custom_intent_60
+- custom_intent_61
+- custom_intent_62
+- custom_intent_63
+- custom_intent_64
+- custom_intent_65
+- custom_intent_66
+- custom_intent_67
+- custom_intent_68
+- custom_intent_69
+- custom_intent_70
+- custom_intent_71
+- custom_intent_72
+- custom_intent_73
+- custom_intent_74
+- custom_intent_75
+- custom_intent_76
+- custom_intent_77
+- custom_intent_78
+- custom_intent_79
+- custom_intent_80
+- custom_intent_81
+- custom_intent_82
+- custom_intent_83
+- custom_intent_84
+- custom_intent_85
+- custom_intent_86
+- custom_intent_91
+- custom_intent_92
+- ask_hot_products
+- search_products
+- search_by_price
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -179,6 +213,481 @@ responses:
   - text: Có mặt. Mình là Khánh – nhân viên ảo bán hàng của cửa hàng. Khánh rất vui
       được hỗ trợ bạn tìm sản phẩm phù hợp nhất. Bạn cần tư vấn về điện thoại, giá
       cả hay chương trình khuyến mãi nào không ạ?
+  utter_custom_intent_58:
+  - text: Bên em bán điện thoại và có các hãng như Apple, Samsung, Xiaomi, Oppo, Vivo
+      và nhiều hãng khác nữa ạ.
+  utter_custom_intent_59:
+  - text: Bên em bán điện thoại và có các hãng như Apple, Samsung, Xiaomi, Oppo, Vivo
+      và nhiều hãng khác nữa ạ.
+  utter_custom_intent_60:
+  - text: Dạ, iPhone X là mẫu iPhone đột phá được Apple ra mắt năm 2017, lần đầu tiên
+      loại bỏ nút Home vật lý và giới thiệu công nghệ nhận diện khuôn mặt Face ID.
+      Ngoài ra, máy cũng có thiết kế màn hình OLED tràn viền rất ấn tượng ạ.
+  utter_custom_intent_61:
+  - text: Dạ hiện tại iPhone X đã ngừng sản xuất chính thức, tuy nhiên quý khách vẫn
+      có thể tìm mua máy cũ trên thị trường với mức giá dao động từ 3 đến 5 triệu
+      đồng, tùy theo dung lượng và tình trạng máy ạ.
+  utter_custom_intent_62:
+  - text: Dạ được ạ, nếu nhu cầu của quý khách chỉ là nghe gọi, lướt web hay sử dụng
+      các ứng dụng cơ bản thì iPhone X vẫn đáp ứng tốt. Tuy nhiên, do Apple đã ngừng
+      cập nhật phần mềm cho dòng máy này, một số tính năng mới hoặc bảo mật có thể
+      bị hạn chế ạ.
+  utter_custom_intent_63:
+  - text: |+
+      Dạ, hiện bên em còn iPhone X dạng máy cũ, giá tham khảo như sau ạ:
+      - Phiên bản 64GB: khoảng 3.200.000 VNĐ
+
+      - Phiên bản 256GB: khoảng 4.800.000 VNĐ
+      Máy có màu bạc và xám không gian, tuy nhiên số lượng có hạn ạ.
+
+  utter_custom_intent_64:
+  - text: |-
+      Dạ có ạ! iPhone 11 bên em hiện còn hàng chính hãng với các phiên bản và giá như sau:
+
+      Phiên bản 64GB: khoảng 7.500.000 VNĐ
+
+      Phiên bản 128GB: khoảng 8.500.000 VNĐ
+
+      Phiên bản 256GB: khoảng 10.000.000 VNĐ
+  utter_custom_intent_65:
+  - text: |-
+      Dạ, em gửi anh/chị thông tin chi tiết về iPhone 11 như sau ạ:
+
+      iPhone 11 – Thông tin chi tiết
+      1. Thiết kế & màn hình:
+
+      Kích thước màn hình: 6.1 inch Liquid Retina HD (LCD)
+
+      Thiết kế: Khung nhôm, mặt kính cường lực, nhiều màu sắc trẻ trung (đen, trắng, đỏ, vàng, tím)
+
+      Trọng lượng: 194 gram
+
+      2. Hiệu năng:
+
+      Chip xử lý: Apple A13 Bionic (CPU 6 nhân, GPU 4 nhân)
+
+      RAM: 4GB
+
+      Bộ nhớ trong: 64GB, 128GB, 256GB (không hỗ trợ thẻ nhớ ngoài)
+
+      3. Camera:
+
+      Camera kép sau: 12MP chính + 12MP góc siêu rộng
+
+      Quay video 4K 60fps, quay chậm 1080p
+
+      Camera trước: 12MP TrueDepth, hỗ trợ Face ID và quay video 4K
+
+      4. Pin và sạc:
+
+      Thời lượng pin: Khoảng 17 giờ xem video
+
+      Sạc nhanh 18W (không kèm sạc nhanh trong hộp)
+
+      Hỗ trợ sạc không dây chuẩn Qi
+
+      5. Tính năng nổi bật khác:
+
+      Face ID mở khóa bằng khuôn mặt nhanh nhạy
+
+      Chống nước, chống bụi chuẩn IP68
+
+      Hệ điều hành iOS (cập nhật được các phiên bản mới nhất)
+
+      6. Giá tham khảo:
+
+      Phiên bản 64GB: 7.500.000 VNĐ
+
+      Phiên bản 128GB: 8.500.000 VNĐ
+
+      Phiên bản 256GB: 10.000.000 VNĐ
+
+      Nếu anh/chị cần tư vấn thêm về màu sắc, phụ kiện, hoặc chương trình trả góp, em rất sẵn sàng hỗ trợ ạ!
+  utter_custom_intent_66:
+  - text: |-
+      Dạ, em gửi anh/chị thông tin chi tiết về iPhone 12 cùng giá cả tham khảo như sau ạ:
+
+      iPhone 12 – Thông tin chi tiết
+      1. Thiết kế & màn hình:
+
+      Màn hình 6.1 inch Super Retina XDR OLED, độ phân giải 1170 x 2532 pixels
+
+      Thiết kế viền vuông vức, khung nhôm, mặt kính cường lực Ceramic Shield siêu bền
+
+      Trọng lượng khoảng 164 gram
+
+      2. Hiệu năng:
+
+      Chip Apple A14 Bionic, CPU 6 nhân, GPU 4 nhân, hiệu năng mạnh mẽ và tiết kiệm pin
+
+      RAM 4GB
+
+      Bộ nhớ trong: 64GB, 128GB, 256GB (không hỗ trợ thẻ nhớ ngoài)
+
+      3. Camera:
+
+      Camera kép sau 12MP (chính) + 12MP (góc siêu rộng)
+
+      Quay video 4K lên đến 60fps, hỗ trợ Dolby Vision HDR
+
+      Camera trước 12MP TrueDepth, hỗ trợ Face ID
+
+      4. Pin và sạc:
+
+      Thời lượng pin khoảng 17 giờ xem video
+
+      Hỗ trợ sạc nhanh 20W (có thể sạc 50% pin trong 30 phút)
+
+      Hỗ trợ sạc không dây chuẩn Qi và MagSafe
+
+      5. Tính năng nổi bật:
+
+      Hỗ trợ mạng 5G tốc độ cao
+
+      Chống nước, chống bụi chuẩn IP68
+
+      Hệ điều hành iOS với cập nhật lâu dài
+
+      Giá tham khảo iPhone 12 hiện nay (chính hãng):
+      64GB: từ 10.500.000 VNĐ
+
+      128GB: từ 11.500.000 VNĐ
+
+      256GB: từ 13.000.000 VNĐ
+
+      Nếu anh/chị muốn biết màu sắc cụ thể, chương trình trả góp hoặc các ưu đãi hiện có, em sẵn sàng hỗ trợ ngay ạ!
+  utter_custom_intent_67:
+  - text: "Dạ, em xin gửi anh/chị thông tin chi tiết về iPhone 12 Pro bao gồm giá
+      tham khảo để dễ dàng lựa chọn phù hợp với nhu cầu sử dụng ạ.\n\U0001F4F1 iPhone
+      12 Pro\nThông tin chi tiết:\n\nMàn hình: 6.1 inch Super Retina XDR OLED, độ
+      phân giải 2532 x 1170 pixels\n\nChip xử lý: Apple A14 Bionic\n\nRAM: 6GB\n\nCamera
+      sau: 3 camera 12MP (chính, góc rộng, tele)\n\nCamera trước: 12MP\n\nDung lượng
+      pin: Khoảng 17 giờ xem video\n\nHệ điều hành: iOS 14 (có thể nâng cấp lên phiên
+      bản mới nhất)\n\nGiá tham khảo (cũ, 99%):\n\n128GB: Từ 8.199.000 VNĐ\n\n256GB:
+      Từ 8.999.000 VNĐ\n\n512GB: Từ 9.990.000 VNĐ\n\nMàu sắc: Xanh dương, vàng hồng,
+      bạc, xám không gian"
+  utter_custom_intent_68:
+  - text: "\U0001F4F1 iPhone 12 Pro Max\nThông tin chi tiết:\n\nMàn hình: 6.7 inch
+      Super Retina XDR OLED, độ phân giải 2778 x 1284 pixels\n\nChip xử lý: Apple
+      A14 Bionic\n\nRAM: 6GB\n\nCamera sau: 3 camera 12MP (chính, góc rộng, tele)\n\nCamera
+      trước: 12MP\n\nDung lượng pin: Khoảng 20 giờ xem video\n\nHệ điều hành: iOS
+      14 (có thể nâng cấp lên phiên bản mới nhất)\n\nGiá tham khảo (cũ, 99%):\n\n128GB:
+      Từ 10.499.000 VNĐ\n\n256GB: Từ 10.999.000 VNĐ\n\n512GB: Từ 12.890.000 VNĐ\n\nMàu
+      sắc: Xanh dương, vàng đồng, bạc, xám không gian"
+  utter_custom_intent_69:
+  - text: "Dạ, em xin gửi anh/chị thông tin chi tiết về iPhone 11 Pro, bao gồm các
+      điểm khác biệt, thông số kỹ thuật và giá tham khảo hiện nay, để anh/chị dễ dàng
+      lựa chọn phù hợp với nhu cầu sử dụng của mình.\n\U0001F4F1 iPhone 11 Pro\nThông
+      số kỹ thuật:\n\nMàn hình: OLED 5.8 inch, độ phân giải 2436 x 1125 pixel\n\nChip
+      xử lý: Apple A13 Bionic\n\nRAM: 4GB\n\nBộ nhớ trong: 64GB, 256GB, 512GB\n\nCamera
+      sau: 3 camera 12MP (chính, góc rộng, tele)\n\nCamera trước: 12MP\n\nDung lượng
+      pin: 3.046 mAh\n\nTrọng lượng: 188g\n\nKích thước: 144 x 71.4 x 8.1 mm\n\nMàu
+      sắc: Xám không gian, Bạc, Vàng, Xanh lá\n\nGiá tham khảo (cũ, 99%):\n\n64GB:
+      Từ 7.500.000 VNĐ\n\n256GB: Từ 9.000.000 VNĐ\n\n512GB: Từ 11.000.000 VNĐ\n\n"
+  utter_custom_intent_70:
+  - text: "Dạ, em xin gửi anh/chị thông tin chi tiết về iPhone 11 Pro Max, bao gồm
+      các điểm khác biệt, thông số kỹ thuật và giá tham khảo hiện nay, để anh/chị
+      dễ dàng lựa chọn phù hợp với nhu cầu sử dụng của mình.\n\n\U0001F4F1 iPhone
+      11 Pro Max\nThông số kỹ thuật:\n\nMàn hình: OLED 6.5 inch, độ phân giải 2688
+      x 1242 pixel\n\nChip xử lý: Apple A13 Bionic\n\nRAM: 4GB\n\nBộ nhớ trong: 64GB,
+      256GB, 512GB\n\nCamera sau: 3 camera 12MP (chính, góc rộng, tele)\n\nCamera
+      trước: 12MP\n\nDung lượng pin: 3.969 mAh\n\nTrọng lượng: 226g\n\nKích thước:
+      158 x 77.8 x 8.1 mm\n\nMàu sắc: Xám không gian, Bạc, Vàng, Xanh lá\n\nGiá tham
+      khảo (cũ, 99%):\n\n64GB: Từ 9.500.000 VNĐ\n\n256GB: Từ 11.000.000 VNĐ\n\n512GB:
+      Từ 13.000.000 VNĐ"
+  utter_custom_intent_71:
+  - text: "Dạ, em xin gửi anh/chị thông tin chi tiết và giá tham khảo về iPhone 13
+      để anh/chị có thể lựa chọn dễ dàng hơn ạ:\n\U0001F4F1 iPhone 13\nThông số chính:\n\nMàn
+      hình: 6.1 inch Super Retina XDR OLED, độ phân giải 2532 x 1170 pixels\n\nChip
+      xử lý: Apple A15 Bionic\n\nRAM: 4GB\n\nBộ nhớ trong: 128GB, 256GB, 512GB\n\nCamera
+      sau: Camera kép 12MP (chính + góc rộng)\n\nCamera trước: 12MP TrueDepth\n\nPin:
+      Khoảng 19 giờ xem video\n\nMàu sắc: Đen, Trắng, Đỏ, Xanh dương, Hồng\n\nGiá
+      tham khảo:\n\n128GB: ~14.000.000 VNĐ\n\n256GB: ~15.500.000 VNĐ\n\n512GB: ~18.500.000
+      VNĐ"
+  utter_custom_intent_72:
+  - text: "Dạ, em xin gửi anh/chị thông tin chi tiết và giá tham khảo về iPhone 13,
+      iPhone 13 Pro và iPhone 13 Pro Max để anh/chị có thể lựa chọn dễ dàng hơn ạ:\n\U0001F4F1
+      iPhone 13 Pro\nThông số chính:\n\nMàn hình: 6.1 inch Super Retina XDR OLED,
+      hỗ trợ ProMotion 120Hz\n\nChip xử lý: Apple A15 Bionic\n\nRAM: 6GB\n\nBộ nhớ
+      trong: 128GB, 256GB, 512GB, 1TB\n\nCamera sau: Bộ 3 camera 12MP (chính, góc
+      rộng, tele) + cảm biến LiDAR\n\nCamera trước: 12MP TrueDepth\n\nPin: Khoảng
+      22 giờ xem video\n\nMàu sắc: Graphite, Vàng, Bạc, Sierra Blue\n\nGiá tham khảo:\n\n128GB:
+      ~19.500.000 VNĐ\n\n256GB: ~21.000.000 VNĐ\n\n512GB: ~24.000.000 VNĐ\n\n1TB:
+      ~28.000.000 VNĐ"
+  utter_custom_intent_73:
+  - text: "\U0001F4F1 iPhone 13 Pro Max\nThông số chính:\n\nMàn hình: 6.7 inch Super
+      Retina XDR OLED, hỗ trợ ProMotion 120Hz\n\nChip xử lý: Apple A15 Bionic\n\nRAM:
+      6GB\n\nBộ nhớ trong: 128GB, 256GB, 512GB, 1TB\n\nCamera sau: Bộ 3 camera 12MP
+      (chính, góc rộng, tele) + cảm biến LiDAR\n\nCamera trước: 12MP TrueDepth\n\nPin:
+      Khoảng 28 giờ xem video\n\nMàu sắc: Graphite, Vàng, Bạc, Sierra Blue\n\nGiá
+      tham khảo:\n\n128GB: ~22.000.000 VNĐ\n\n256GB: ~24.000.000 VNĐ\n\n512GB: ~27.000.000
+      VNĐ\n\n1TB: ~31.000.000 VNĐ\n\nNếu anh/chị cần hỗ trợ tư vấn màu sắc, phiên
+      bản bộ nhớ phù hợp hoặc chương trình trả góp, em rất vui lòng giúp đỡ ạ!"
+  utter_custom_intent_74:
+  - text: |-
+      Dạ có anh/chị ạ! iPhone 14 đang rất được ưa chuộng với các phiên bản bộ nhớ và màu sắc đa dạng như sau:
+
+      Màn hình: 6.1 inch Super Retina XDR OLED
+
+      Chip: Apple A15 Bionic (phiên bản nâng cấp)
+
+      RAM: 6GB
+
+      Bộ nhớ: 128GB, 256GB, 512GB
+
+      Camera sau: Camera kép 12MP với nhiều cải tiến về chụp ảnh trong điều kiện thiếu sáng
+
+      Camera trước: 12MP TrueDepth với lấy nét tự động
+
+      Pin: Khoảng 20 giờ xem video
+
+      Màu sắc: Đen, Trắng, Đỏ, Xanh Dương, Tím
+
+      Giá tham khảo (hàng mới):
+
+      128GB: ~17.000.000 VNĐ
+
+      256GB: ~19.000.000 VNĐ
+
+      512GB: ~22.000.000 VNĐ
+
+      Nếu anh/chị muốn, em có thể tư vấn thêm về màu sắc hoặc hỗ trợ đặt hàng nhé!
+  utter_custom_intent_75:
+  - text: |-
+      Dạ có ạ! iPhone 14 Pro sở hữu công nghệ màn hình và camera rất nổi bật, rất phù hợp với anh/chị thích chụp hình và sử dụng hiệu suất cao.
+
+      Màn hình: 6.1 inch Super Retina XDR OLED, hỗ trợ ProMotion 120Hz
+
+      Chip: Apple A16 Bionic mới nhất
+
+      RAM: 6GB
+
+      Bộ nhớ: 128GB, 256GB, 512GB, 1TB
+
+      Camera sau: Bộ 3 camera 48MP chính, 12MP góc rộng và tele + cảm biến LiDAR
+
+      Camera trước: 12MP TrueDepth với lấy nét tự động
+
+      Pin: Khoảng 23 giờ xem video
+
+      Màu sắc: Đen than chì, Vàng, Bạc, Tím
+
+      Giá tham khảo (hàng mới):
+
+      128GB: ~23.000.000 VNĐ
+
+      256GB: ~25.000.000 VNĐ
+
+      512GB: ~28.000.000 VNĐ
+
+      1TB: ~32.000.000 VNĐ
+
+      Anh/chị cần tư vấn thêm hoặc đặt mua thì em sẵn sàng hỗ trợ ạ!
+  utter_custom_intent_76:
+  - text: |+
+      Dạ có ạ! iPhone 14 Pro Max là phiên bản màn hình lớn nhất với nhiều tính năng cao cấp rất đáng để đầu tư.
+
+      Màn hình: 6.7 inch Super Retina XDR OLED, ProMotion 120Hz
+
+      Chip: Apple A16 Bionic
+
+      RAM: 6GB
+
+      Bộ nhớ: 128GB, 256GB, 512GB, 1TB
+
+      Camera sau: Bộ 3 camera 48MP chính + 12MP góc rộng và tele + cảm biến LiDAR
+
+      Camera trước: 12MP TrueDepth, tự động lấy nét
+
+      Pin: Khoảng 29 giờ xem video
+
+      Màu sắc: Đen than chì, Vàng, Bạc, Tím
+
+      Giá tham khảo (hàng mới):
+
+      128GB: ~26.000.000 VNĐ
+
+      256GB: ~28.000.000 VNĐ
+
+      512GB: ~32.000.000 VNĐ
+
+      1TB: ~36.000.000 VNĐ
+
+      Anh/chị cần tư vấn thêm về màu sắc hoặc chương trình trả góp thì em rất vui lòng hỗ trợ ạ!
+
+  utter_custom_intent_77:
+  - text: |-
+      Dạ vâng, hiện bên em có iPhone 15 ạ! Máy sở hữu thiết kế tinh tế, hiệu năng mạnh mẽ và nhiều cải tiến đáng giá.
+
+      Màn hình: 6.1 inch Super Retina XDR OLED
+
+      Chip: Apple A16 Bionic (phiên bản nâng cấp)
+
+      RAM: 6GB
+
+      Bộ nhớ: 128GB, 256GB, 512GB
+
+      Camera sau: Camera kép 48MP (chính) + 12MP (góc rộng)
+
+      Camera trước: 12MP TrueDepth
+
+      Pin: Khoảng 20-22 giờ xem video
+
+      Màu sắc: Xanh, Đỏ, Trắng, Đen, Vàng
+
+      Giá tham khảo (hàng mới):
+
+      128GB: ~19.000.000 VNĐ
+
+      256GB: ~21.000.000 VNĐ
+
+      512GB: ~24.000.000 VNĐ
+
+      Anh/chị cần tư vấn thêm về màu sắc hay phiên bản phù hợp, em luôn sẵn sàng hỗ trợ ạ!
+  utter_custom_intent_78:
+  - text: |-
+      Dạ có ạ! iPhone 15 Pro là dòng cao cấp với hiệu năng đỉnh và nhiều tính năng chuyên nghiệp.
+
+      Màn hình: 6.1 inch Super Retina XDR OLED, hỗ trợ ProMotion 120Hz
+
+      Chip: Apple A17 Pro mới nhất
+
+      RAM: 8GB
+
+      Bộ nhớ: 128GB, 256GB, 512GB, 1TB
+
+      Camera sau: Bộ 3 camera 48MP chính, 12MP góc rộng và tele 5x zoom
+
+      Camera trước: 12MP TrueDepth
+
+      Pin: Khoảng 23 giờ xem video
+
+      Màu sắc: Xám Titan, Vàng, Bạc, Xanh lam
+
+      Giá tham khảo (hàng mới):
+
+      128GB: ~28.000.000 VNĐ
+
+      256GB: ~30.000.000 VNĐ
+
+      512GB: ~34.000.000 VNĐ
+
+      1TB: ~38.000.000 VNĐ
+
+      Anh/chị cần tư vấn thêm hoặc muốn đặt hàng, em rất vui được hỗ trợ ạ!
+  utter_custom_intent_79:
+  - text: |-
+      Dạ có ạ! iPhone 15 Pro Max là chiếc flagship lớn nhất và mạnh mẽ nhất hiện nay.
+
+      Màn hình: 6.7 inch Super Retina XDR OLED, ProMotion 120Hz
+
+      Chip: Apple A17 Pro
+
+      RAM: 8GB
+
+      Bộ nhớ: 256GB, 512GB, 1TB
+
+      Camera sau: Bộ 3 camera 48MP chính + 12MP góc rộng + tele 5x zoom quang học
+
+      Camera trước: 12MP TrueDepth
+
+      Pin: Khoảng 29 giờ xem video
+
+      Màu sắc: Xám Titan, Vàng, Bạc, Xanh lam
+
+      Giá tham khảo (hàng mới):
+
+      256GB: ~32.000.000 VNĐ
+
+      512GB: ~36.000.000 VNĐ
+
+      1TB: ~40.000.000 VNĐ
+
+      Anh/chị muốn tư vấn thêm hoặc hỗ trợ mua trả góp thì em luôn sẵn sàng ạ!
+
+      Anh/chị cần thêm thông tin về các đời iPhone khác hay dịch vụ hỗ trợ gì, em rất vui được giúp đỡ ạ!
+  utter_custom_intent_80:
+  - text: |-
+      Dạ có ạ! Bên em hiện có Samsung Galaxy A14 với cấu hình và giá tham khảo như sau:
+
+      Samsung Galaxy A14 (4GB RAM / 128GB bộ nhớ): từ 3.490.000 VNĐ
+
+      Màu sắc: Đen, Xanh dương, Trắng
+
+      Anh/chị cần tư vấn thêm hoặc đặt hàng màu nào, em rất sẵn lòng hỗ trợ ạ!
+  utter_custom_intent_81:
+  - text: |-
+      Dạ, Samsung Galaxy S23 Ultra bên em có phiên bản:
+
+      12GB RAM / 256GB bộ nhớ: từ 24.990.000 VNĐ
+
+      Màu sắc: Đen, Bạc, Xanh lục, Hồng
+
+      Anh/chị quan tâm đến màu nào hoặc cần tư vấn thêm, em xin hỗ trợ ngay ạ!
+  utter_custom_intent_82:
+  - text: |-
+      Dạ có ạ! Samsung Galaxy Z Fold5 bên em hiện có:
+
+      12GB RAM / 256GB bộ nhớ: từ 35.990.000 VNĐ
+
+      Màu sắc: Đen, Bạc
+
+      Anh/chị muốn đặt hàng hoặc tham khảo thêm màu, em rất vui được hỗ trợ ạ!
+  utter_custom_intent_83:
+  - text: "Dạ, bên em hiện đang có các dòng iPhone từ đời X đến 15 Pro Max, em xin
+      báo giá tham khảo như sau ạ: Dòng iPhone Giá tham khảo (VNĐ) iPhone X (64GB)
+      từ 5.990.000 iPhone XR (64GB) từ 6.790.000 iPhone XS (64GB) từ 6.990.000 iPhone
+      11 (64GB) từ 8.490.000 iPhone 12 (64GB) từ 10.990.000 iPhone 12 Pro (128GB)
+      từ 13.990.000 iPhone 13 (128GB) từ 14.990.000 iPhone 13 Pro (128GB) từ 18.990.000
+      iPhone 14 (128GB) từ 17.990.000 iPhone 14 Pro (128GB) từ 21.990.000 iPhone 15
+      (128GB) từ 20.990.000 iPhone 15 Pro (128GB) từ 26.990.000 iPhone 15 Pro Max
+      (256GB) từ 31.990.000 \U0001F4A1 Giá có thể thay đổi theo dung lượng bộ nhớ
+      và tình trạng máy (mới hay Like New). Anh/chị muốn em hỗ trợ dòng nào cụ thể
+      hơn không ạ?"
+  utter_custom_intent_84:
+  - text: "Dạ, bên em đang có nhiều dòng Samsung từ tầm trung đến cao cấp. Em xin
+      báo giá tham khảo như sau ạ: Dòng Samsung Giá tham khảo (VNĐ) Galaxy A14 (4GB/128GB)
+      từ 3.490.000 Galaxy A24 (6GB/128GB) từ 4.690.000 Galaxy A34 5G (8GB/128GB) từ
+      6.990.000 Galaxy A54 5G (8GB/256GB) từ 8.990.000 Galaxy S20 FE (8GB/128GB) từ
+      7.990.000 Galaxy S21 FE (8GB/256GB) từ 9.990.000 Galaxy S22 (8GB/128GB) từ 12.990.000
+      Galaxy S23 (8GB/128GB) từ 16.990.000 Galaxy S23 Ultra (12GB/256GB) từ 24.990.000
+      Galaxy S24 (8GB/256GB) từ 21.990.000 Galaxy S24 Ultra (12GB/256GB) từ 31.990.000
+      Galaxy Z Flip5 (8GB/256GB) từ 20.990.000 Galaxy Z Fold5 (12GB/256GB) từ 35.990.000
+      \U0001F4A1 Giá trên có thể thay đổi theo thời điểm và dung lượng bộ nhớ. Anh/chị
+      muốn em hỗ trợ tư vấn dòng nào cụ thể không ạ?"
+  utter_custom_intent_85:
+  - text: "Tôi là chatbot do BigK triển khai, dựa trên nền tảng học máy mã nguồn mở.
+      Mọi kiến thức và phản hồi đều nhằm mang lại trải nghiệm tốt nhất cho bạn.\n\n"
+  utter_custom_intent_86:
+  - text: hehe
+  utter_custom_intent_91:
+  - text: ok
+  utter_custom_intent_92:
+  - text: oke bạn
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+actions:
+- action_dynamic_response
+- action_search_products
+- action_products_by_price_range
+slots:
+  keyword:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: keyword
+  min_price:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: min_price
+  max_price:
+    type: float
+    mappings:
+    - type: from_entity
+      entity: max_price
+entities:
+- keyword
+- min_price
+- max_price
