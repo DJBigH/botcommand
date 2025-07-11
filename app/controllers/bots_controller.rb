@@ -9,17 +9,18 @@ class BotsController < ApplicationController
   before_action :set_bot, only: [ :show, :train, :add_prompt, :chat, :run, :stop ]
 
   def index
-    @bots = Bot.all
+  @bots = Bot.paginate(page: params[:page], per_page: 5)
   end
+
 
   def new
     @bot = Bot.new
   end
 
   def create
-  @bot = Bot.new(bot_params.merge(status: "not_started",
-  port: next_available_port
-  ))
+  @bot = Bot.new(bot_params.merge(status: "not_started"))
+  @bot.port = next_available_port
+  @bot.action_port = next_available_actions_port
 
   if @bot.save
     bot_name_folder = @bot.name.parameterize.underscore
@@ -41,6 +42,7 @@ class BotsController < ApplicationController
       @bot.update!(path: bot_dir.to_s)
 
       clear_sample_data(bot_dir)
+      generate_endpoints_file(@bot)
 
       redirect_to bot_path(@bot), notice: "Tạo bot thành công!"
     else
@@ -52,6 +54,7 @@ class BotsController < ApplicationController
     render :new
   end
   end
+
 
 
   def show
@@ -91,7 +94,7 @@ class BotsController < ApplicationController
 
   def run
   @bot.update(status: "starting")
-  run_bot(@bot.path, @bot.port)
+  run_bot(@bot.path, @bot.port, @bot.action_port)
 
   Thread.new do
     bot = Bot.find(@bot.id)
@@ -108,7 +111,7 @@ class BotsController < ApplicationController
 
   def stop
   Thread.new do
-    success = stop_bot(@bot.port)
+    success = stop_bot(@bot.port, @bot.action_port)
     @bot.update(status: success ? "not_started" : "error")
   end
 
@@ -240,21 +243,40 @@ class BotsController < ApplicationController
 
   Rails.logger.info "[TRAINING] Đang train bot tại #{path}"
   system("bash", "-c", bash_command)
-end
+  end
 
 
 
-  def run_bot(path, port)
+  def run_bot(path, port, action_port)
   activate_path = "/home/bigk/rasa-env/bin/activate"
 
-  bash_command = <<~BASH
+  # Run action server trước
+  action_cmd = <<~BASH
     cd "#{path}" && \
     source "#{activate_path}" && \
-    rasa run --enable-api --cors "*" --port #{port} --debug &
+    rasa run actions --port #{action_port} --debug
   BASH
 
-  system("bash", "-c", bash_command)
+  fork do
+    system("bash", "-c", action_cmd)
   end
+
+  sleep 3 # chờ action server chạy ổn định
+
+  # Run rasa server
+  rasa_cmd = <<~BASH
+    cd "#{path}" && \
+    source "#{activate_path}" && \
+    rasa run --enable-api --cors "*" --port #{port} --endpoints endpoints.yml --debug
+  BASH
+
+  fork do
+    system("bash", "-c", rasa_cmd)
+  end
+  end
+
+
+
 
 
   def wait_for_rasa_ready(port)
@@ -282,32 +304,32 @@ end
   end
 
 
-  def stop_bot(port)
-  pid = `lsof -i:#{port} -t`.strip
-  return false if pid.blank?
+  def stop_bot(bot_port, action_port)
+  [bot_port, action_port].each do |port|
+    pid = `lsof -i:#{port} -t`.strip
+    next if pid.blank?
 
-  begin
-    # Gửi tín hiệu dừng nhẹ
-    Process.kill("TERM", pid.to_i)
-    Rails.logger.info "[STOP BOT] Đã gửi SIGTERM đến PID #{pid} (port #{port})"
+    begin
+      # Gửi tín hiệu dừng nhẹ
+      Process.kill("TERM", pid.to_i)
+      Rails.logger.info "[STOP BOT] Đã gửi SIGTERM đến PID #{pid} (port #{port})"
 
-    # Chờ quá trình dừng hẳn (timeout 5s)
-    10.times do
-      sleep 0.5
-      return true unless system("kill -0 #{pid}") # nếu không còn tồn tại
+      # Chờ quá trình dừng hẳn (timeout 5s)
+      10.times do
+        sleep 0.5
+        break unless system("kill -0 #{pid}") # nếu không còn tồn tại
+      end
+
+      # Nếu chưa dừng → kill -9
+      if system("kill -0 #{pid}")
+        Process.kill("KILL", pid.to_i)
+        Rails.logger.warn "[STOP BOT] Buộc kill PID #{pid} vì không tự dừng"
+      end
+    rescue => e
+      Rails.logger.error "[STOP BOT ERROR] #{e.message}"
     end
-
-    # Nếu chưa dừng → kill -9
-    Process.kill("KILL", pid.to_i)
-    Rails.logger.warn "[STOP BOT] Đã buộc kill PID #{pid} vì không tự dừng"
-    true
-  rescue => e
-    Rails.logger.error "[STOP BOT ERROR] #{e.message}"
-    false
   end
   end
-
-
 
   def next_available_port(start_port = 5005)
   used_ports = Bot.pluck(:port)
@@ -320,6 +342,26 @@ end
   port
   end
 
+ def next_available_actions_port(start_actions_port = 5055)
+  used_action_ports = Bot.pluck(:action_port)
+  action_port = start_actions_port
+
+  while used_action_ports.include?(action_port)
+    action_port += 1
+  end
+
+  action_port
+  end
+
+
+  def generate_endpoints_file(bot)
+    content = <<~YAML
+      action_endpoint:
+        url: "http://localhost:#{bot.action_port}/webhook"
+    YAML
+
+    File.write(File.join(bot.path, 'endpoints.yml'), content)
+  end
 
 
   def update_stories_file(bot)

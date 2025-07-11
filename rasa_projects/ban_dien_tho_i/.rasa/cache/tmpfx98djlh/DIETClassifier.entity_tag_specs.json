@@ -1,0 +1,36 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-keyword",
+      "2": "I-keyword",
+      "3": "L-keyword",
+      "4": "U-keyword",
+      "5": "B-max_price",
+      "6": "I-max_price",
+      "7": "L-max_price",
+      "8": "U-max_price",
+      "9": "B-min_price",
+      "10": "I-min_price",
+      "11": "L-min_price",
+      "12": "U-min_price",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-keyword": 1,
+      "I-keyword": 2,
+      "L-keyword": 3,
+      "U-keyword": 4,
+      "B-max_price": 5,
+      "I-max_price": 6,
+      "L-max_price": 7,
+      "U-max_price": 8,
+      "B-min_price": 9,
+      "I-min_price": 10,
+      "L-min_price": 11,
+      "U-min_price": 12,
+      "O": 0
+    },
+    "num_tags": 13
+  }
+]
