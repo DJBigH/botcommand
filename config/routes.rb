@@ -37,5 +37,7 @@ Rails.application.routes.draw do
     end
   end
   end
-
+  mount ActionCable.server => "/cable"
+  get '/embed_chat', to: 'chat#embed_chat'
+  post '/chat_api/message', to: 'chat_api#message'
 end

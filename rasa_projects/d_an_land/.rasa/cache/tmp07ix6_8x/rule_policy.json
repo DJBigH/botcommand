@@ -1,0 +1,22 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"custom_intent_106\"}}]": "utter_custom_intent_106",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"custom_intent_106\"}}, {\"prev_action\": {\"action_name\": \"utter_custom_intent_106\"}, \"user\": {\"intent\": \"custom_intent_106\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"custom_intent_108\"}}]": "utter_custom_intent_108",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"custom_intent_108\"}}, {\"prev_action\": {\"action_name\": \"utter_custom_intent_108\"}, \"user\": {\"intent\": \"custom_intent_108\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"custom_intent_107\"}}]": "utter_custom_intent_107",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"custom_intent_107\"}}, {\"prev_action\": {\"action_name\": \"utter_custom_intent_107\"}, \"user\": {\"intent\": \"custom_intent_107\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"custom_intent_109\"}}]": "utter_custom_intent_109",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"custom_intent_109\"}}, {\"prev_action\": {\"action_name\": \"utter_custom_intent_109\"}, \"user\": {\"intent\": \"custom_intent_109\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {},
+    "rules_not_in_stories": [
+      "predicting default action with intent back",
+      "predicting default action with intent session_start",
+      "predicting default action with intent restart"
+    ]
+  }
+}
