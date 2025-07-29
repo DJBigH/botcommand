@@ -191,7 +191,7 @@ class BotsController < ApplicationController
   end
 
 
-  domain_data["version"] ||= "3.0"
+  domain_data["version"] ||= "3.1"
   domain_data["intents"] ||= []
   domain_data["responses"] ||= {}
 

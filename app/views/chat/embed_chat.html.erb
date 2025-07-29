@@ -1,0 +1,108 @@
+<!-- app/views/chat/embed_chat.html.erb -->
+<div id="chat-widget" style="font-family: Arial, sans-serif; max-width: 350px; position: fixed; bottom: 20px; right: 20px; border: 1px solid #ccc; border-radius: 8px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: flex; flex-direction: column; height: 500px;">
+
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #007bff; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+    <h3 style="margin: 0; font-size: 1.1rem;  padding: 15px">Chat với Bot: <%= @bot.name %></h3>
+    <button id="toggle-btn" style="background: transparent; border: none; color: white; font-size: 20px; cursor: pointer;" aria-label="Toggle chat window">&#x2212;</button>
+  </div>
+
+  <div id="chat-content" style="flex: 1; overflow-y: auto; padding: 8px; background: #fafafa;">
+  <div id="chat-messages" style="display: flex; flex-direction: column;"></div>
+  </div>
+
+
+  <form id="chat-form" style="display: flex; gap: 5px; padding: 8px; border-top: 1px solid #ccc;">
+    <input id="message-input" type="text" placeholder="Nhập tin nhắn..." style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" autocomplete="off" required />
+    <button type="submit" style="padding: 8px 12px; border:none; background: #007bff; color: white; border-radius: 4px; cursor: pointer;">Gửi</button>
+  </form>
+</div>
+
+<script>
+  
+  const chatWidget = document.getElementById('chat-widget');
+  const toggleBtn = document.getElementById('toggle-btn');
+  const chatContent = document.getElementById('chat-content');
+  const chatForm = document.getElementById('chat-form');
+  const messageInput = document.getElementById('message-input');
+  const chatMessages = document.getElementById('chat-messages');
+
+  // Hàm thêm tin nhắn
+    function appendMessage(text, sender = 'bot') {
+    const msgDiv = document.createElement('div');
+    msgDiv.style.marginBottom = '8px';
+    msgDiv.style.padding = '6px 10px';
+    msgDiv.style.borderRadius = '12px';
+    msgDiv.style.maxWidth = '80%';
+
+    if(sender === 'user') {
+      msgDiv.style.backgroundColor = '#007bff';
+      msgDiv.style.color = 'white';
+      msgDiv.style.marginLeft = 'auto';
+    } else {
+      msgDiv.style.backgroundColor = '#e5e5ea';
+      msgDiv.style.color = '#333';
+      msgDiv.style.marginRight = 'auto';
+    }
+    msgDiv.textContent = text;
+    chatMessages.appendChild(msgDiv);
+
+    // ✅ Scroll đến cuối nội dung
+    chatContent.scrollTop = chatContent.scrollHeight;
+  }
+
+
+
+    toggleBtn.addEventListener('click', () => {
+    if (chatContent.style.display === 'none') {
+      chatContent.style.display = 'block';
+      chatForm.style.display = 'flex';
+      toggleBtn.innerHTML = '&#x2212;';
+      chatWidget.style.height = '500px';
+    } else {
+      chatContent.style.display = 'none';
+      chatForm.style.display = 'none';
+      toggleBtn.innerHTML = '&#x2b;'; // dấu cộng
+      chatWidget.style.height = '60px'; // tăng lên để header hiện rõ
+    }
+    });
+
+
+    // Xử lý gửi tin nhắn
+    chatForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if(!message) return;
+
+      appendMessage(message, 'user');
+      messageInput.value = '';
+      messageInput.disabled = true;
+      fetch('http://localhost:<%= @bot.port %>/webhooks/rest/webhook', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      sender: 'Khách hàng',
+      message: message
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(Array.isArray(data) && data.length > 0){
+      data.forEach(reply => {
+        if(reply.text) appendMessage(reply.text, 'bot');
+      });
+    } else {
+      appendMessage('Xin lỗi, tôi chưa hiểu ý bạn.', 'bot');
+    }
+    messageInput.disabled = false;
+    messageInput.focus();
+  })
+  .catch(err => {
+    appendMessage('Bot hiện không hoạt động, xin vui lòng thử lại sau.', 'bot');
+    messageInput.disabled = false;
+    messageInput.focus();
+  });
+
+  });
+</script>
