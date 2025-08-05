@@ -1,0 +1,10 @@
+---
+version: '3.1'
+intents:
+- custom_intent_114
+- custom_intent_116
+responses:
+  utter_custom_intent_114:
+  - text: hihiheheh
+  utter_custom_intent_116:
+  - text: Tôi đây

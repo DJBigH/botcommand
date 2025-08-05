@@ -290,3 +290,6 @@ nlu:
     - Tôi muốn tìm sản phẩm từ [1000000](min_price) đến [5000000](max_price)
     - Có sản phẩm nào từ [2000000](min_price) đến [9000000](max_price) không?
     - Sản phẩm nào trong khoảng [1500000](min_price) đến [8000000](max_price)?
+- intent: custom_intent_113
+  examples: |
+    - Thiên lý ơi

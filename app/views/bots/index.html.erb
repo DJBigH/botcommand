@@ -38,6 +38,7 @@
             <th>Ten Bot</th>
             <th>Thoi gian tao</th>
             <th>Trạng thái</th>
+            <th>Mã web</th>
             <th>Hành động</th>
           </tr>
         </thead>
@@ -65,6 +66,8 @@
             <span class="badge badge-dark">Không xác định</span>
           <% end %>
         </td>
+
+        <td><%= item.bot_identifier%></td>
 
         <td>
           <%= link_to 'Trò chuyện với bot', bot_chat_ui_path(item), class: 'btn btn-success mt-2', data: { turbo: false } %>

@@ -2,7 +2,6 @@
   const script = document.currentScript;
   const botIdentifier = script.getAttribute("data-bot");
 
-  // Tạo form nhập tên và số điện thoại
   const formContainer = document.createElement("div");
   formContainer.style.position = "fixed";
   formContainer.style.bottom = "20px";

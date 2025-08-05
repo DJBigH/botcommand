@@ -75,6 +75,7 @@ intents:
 - ask_hot_products
 - search_products
 - search_by_price
+- custom_intent_113
 responses:
   utter_greet:
   - text: Hey! How are you?
@@ -664,6 +665,10 @@ responses:
   - text: ok
   utter_custom_intent_92:
   - text: oke bạn
+  utter_custom_intent_113:
+  - text: |-
+      Em có ở lại đây không
+      Địt mẹ thằng Jack con
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
