@@ -281,3 +281,7 @@ stories:
   steps:
   - intent: custom_intent_92
   - action: utter_custom_intent_92
+- story: story_custom_intent_113
+  steps:
+  - intent: custom_intent_113
+  - action: utter_custom_intent_113

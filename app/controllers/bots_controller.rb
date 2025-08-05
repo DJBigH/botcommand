@@ -24,7 +24,7 @@ class BotsController < ApplicationController
 
   if @bot.save
     bot_name_folder = @bot.name.parameterize.underscore
-    bot_dir = Rails.root.join('rasa_projects', bot_name_folder)
+    bot_dir = Rails.root.join("rasa_projects", bot_name_folder)
 
     FileUtils.mkdir_p(bot_dir)
 
@@ -81,7 +81,7 @@ class BotsController < ApplicationController
 
   generate_domain_file(@bot)
   train_bot(@bot.path)
-
+  stop_bot(@bot.port, @bot.action_port)
   @bot.update(status: "not_started")
 
   redirect_to bot_path(@bot), notice: "Train thành công! Bot đã sẵn sàng để khởi động."
@@ -125,7 +125,7 @@ class BotsController < ApplicationController
   end
 
   def bot_params
-  params.require(:bot).permit(:name, :status)
+  params.require(:bot).permit(:name, :status, :bot_identifier)
   end
 
 
@@ -305,7 +305,7 @@ class BotsController < ApplicationController
 
 
   def stop_bot(bot_port, action_port)
-  [bot_port, action_port].each do |port|
+  [ bot_port, action_port ].each do |port|
     pid = `lsof -i:#{port} -t`.strip
     next if pid.blank?
 
@@ -360,7 +360,7 @@ class BotsController < ApplicationController
         url: "http://localhost:#{bot.action_port}/webhook"
     YAML
 
-    File.write(File.join(bot.path, 'endpoints.yml'), content)
+    File.write(File.join(bot.path, "endpoints.yml"), content)
   end
 
 
@@ -471,7 +471,7 @@ class BotsController < ApplicationController
   def clear_sample_data(bot_path)
   %w[data/nlu.yml data/rules.yml data/stories.yml domain.yml].each do |rel_path|
     full_path = File.join(bot_path, rel_path)
-    File.write(full_path, '') if File.exist?(full_path)
+    File.write(full_path, "") if File.exist?(full_path)
   end
   end
 
