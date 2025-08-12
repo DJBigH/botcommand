@@ -28,7 +28,7 @@ class BotsController < ApplicationController
 
     FileUtils.mkdir_p(bot_dir)
 
-    activate_path = "/home/bigk/rasa-env/bin/activate"
+    activate_path = "/home/chung/rasa-env/bin/activate"
 
     bash_command = <<~BASH
       cd "#{bot_dir}" && \
@@ -233,7 +233,7 @@ class BotsController < ApplicationController
   end
 
   def train_bot(path)
-  activate_path = "/home/bigk/rasa-env/bin/activate"
+  activate_path = "/home/chung/rasa-env/bin/activate"
 
   bash_command = <<~BASH
     cd "#{path}" && \
@@ -248,7 +248,7 @@ class BotsController < ApplicationController
 
 
   def run_bot(path, port, action_port)
-  activate_path = "/home/bigk/rasa-env/bin/activate"
+  activate_path = "/home/chung/rasa-env/bin/activate"
 
   # Run action server trước
   action_cmd = <<~BASH
