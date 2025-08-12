@@ -12,6 +12,10 @@
   <body>
       <div class="container mt-2">
       <h1 class="text-center">Danh sách Bot</h1>
+      <div class="text-right mb-3">
+        <%= link_to 'Danh sách trò chuyện', admin_chatsessions_path, class: 'btn btn-info' %>
+      </div>
+
         <% if flash[:notice] %>
           <div class="alert alert-success">
             <%= flash[:notice] %>

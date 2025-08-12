@@ -1,0 +1,85 @@
+<h3>Chat với: <%= @chat_session.name || 'Khách' %> | Bot: <%= @chat_session.bot.name %></h3>
+
+<style>
+  .chat-message {
+    margin: 8px 0;
+    padding: 8px 12px;
+    border-radius: 12px;
+    max-width: 70%;
+    clear: both;
+  }
+
+  .user-message {
+    background-color: #d4edda; /* xanh nhạt */
+    color: #155724;
+    float: left;
+    text-align: left;
+  }
+
+  .admin-message {
+    background-color: #f8d7da; /* đỏ nhạt */
+    color: #721c24;
+    float: right;
+    text-align: right;
+  }
+
+  #chat-box {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #f9f9f9;
+  }
+</style>
+
+<div id="chat-box">
+  <% @chat_messages.each do |msg| %>
+    <div class="chat-message <%= msg.sender == 'admin' ? 'admin-message' : 'user-message' %>">
+      <strong><%= msg.sender.capitalize %>:</strong> <%= msg.content %>
+    </div>
+  <% end %>
+</div>
+
+<form id="chat-form" class="mt-3">
+  <div class="input-group">
+    <input type="text" id="message-input" class="form-control" placeholder="Nhập tin nhắn..." />
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-success">Gửi</button>
+    </div>
+  </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/actioncable@5.2.8-1/lib/assets/compiled/action_cable.min.js"></script>
+<script>
+  const chatBox = document.getElementById("chat-box");
+  const chatId = "<%= @chat_session.id %>";
+
+  const cable = ActionCable.createConsumer("ws://localhost:3000/cable");
+
+  const channel = cable.subscriptions.create(
+    { channel: "ChatChannel", chat_id: chatId },
+    {
+      received(data) {
+        const msg = document.createElement("div");
+        msg.className = "chat-message " + (data.sender === 'admin' ? 'admin-message' : 'user-message');
+        msg.innerHTML = `<strong>${data.sender}:</strong> ${data.message}`;
+        chatBox.appendChild(msg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+    }
+  );
+
+  document.getElementById("chat-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const input = document.getElementById("message-input");
+    const content = input.value.trim();
+    if (!content) return;
+
+    channel.send({
+      sender: 'admin',
+      message: content
+    });
+
+    input.value = '';
+  });
+</script>

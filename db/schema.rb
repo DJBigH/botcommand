@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_29_050134) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_05_080436) do
   create_table "bots", force: :cascade do |t|
     t.string "name"
     t.string "path"
@@ -59,12 +59,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_29_050134) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  create_table "prompt_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "prompts", force: :cascade do |t|
     t.integer "bot_id"
     t.text "question"
     t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
     t.index ["bot_id"], name: "index_prompts_on_bot_id"
   end
 

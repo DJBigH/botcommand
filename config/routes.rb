@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   
   namespace :api do
   resources :categories
+  resources :chatsessions, only: [:create]
   resources :products do
     collection do
       get :hot
@@ -37,7 +38,11 @@ Rails.application.routes.draw do
     end
   end
   end
-  mount ActionCable.server => "/cable"
+  mount ActionCable.server => '/cable'
   get '/embed_chat', to: 'chat#embed_chat'
   post '/chat_api/message', to: 'chat_api#message'
+
+namespace :admin do
+  resources :chatsessions, only: [:index, :show]
+end
 end

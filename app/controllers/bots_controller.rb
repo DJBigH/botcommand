@@ -63,15 +63,27 @@ class BotsController < ApplicationController
   end
 
   def add_prompt
-  @prompt = @bot.prompts.new(prompt_params)
-  if @prompt.save
-    update_nlu_file(@bot, @prompt)
-    generate_domain_file(@bot)
-    update_stories_file(@bot)
-    update_rules_file(@bot)
-    redirect_to bot_path(@bot), notice: "Thêm prompt thành công!"
+  # Lấy tên danh mục từ params
+  category_name = if params[:category] == "Khác"
+    params[:custom_category].strip
   else
-    redirect_to bot_path(@bot), alert: "Lỗi khi thêm prompt."
+    params[:category]
+  end
+
+  # Tìm hoặc tạo PromptCategory theo tên
+  prompt_category = PromptCategory.find_or_create_by(name: category_name)
+
+  @prompt = Prompt.new(
+    question: params[:prompt][:question],
+    answer: params[:prompt][:answer],
+    category: prompt_category.name, # Lưu tên nếu bạn dùng string
+    bot: @bot
+  )
+
+  if @prompt.save
+    redirect_to bot_path(@bot), notice: "Prompt đã được thêm thành công!"
+  else
+    redirect_to bot_path(@bot), alert: "Thêm prompt thất bại."
   end
   end
 
@@ -86,10 +98,6 @@ class BotsController < ApplicationController
 
   redirect_to bot_path(@bot), notice: "Train thành công! Bot đã sẵn sàng để khởi động."
   end
-
-
-
-
 
 
   def run
@@ -130,7 +138,7 @@ class BotsController < ApplicationController
 
 
   def prompt_params
-    params.require(:prompt).permit(:question, :answer)
+  params.require(:prompt).permit(:question, :answer, :category)
   end
 
   # Cập nhật hoặc thêm intent mới vào nlu.yml (không ghi đè file)
@@ -146,7 +154,7 @@ class BotsController < ApplicationController
   end
 
 
-  intent_name = "custom_intent_#{new_prompt.id}"
+  intent_name = "intent_#{p.prompt_category.name.parameterize(separator: '_')}_#{Digest::MD5.hexdigest(p.question)[0..5]}"
   example_line = "- #{new_prompt.question.strip}"
 
   existing_intent = nlu_data["nlu"].find { |intent| intent["intent"] == intent_name }
@@ -182,14 +190,13 @@ class BotsController < ApplicationController
   def generate_domain_file(bot)
   domain_path = File.join(bot.path, "domain.yml")
 
-  # Đọc domain.yml cũ nếu có, nếu không có thì khởi tạo mặc định
+  # Đọc domain.yml cũ nếu có, nếu không thì khởi tạo mặc định
   domain_data = if File.exist?(domain_path)
-                loaded = YAML.load_file(domain_path)
-                loaded.is_a?(Hash) ? loaded : {}
+                  loaded = YAML.load_file(domain_path)
+                  loaded.is_a?(Hash) ? loaded : {}
   else
-                {}
+                  {}
   end
-
 
   domain_data["version"] ||= "3.1"
   domain_data["intents"] ||= []
@@ -197,20 +204,27 @@ class BotsController < ApplicationController
 
   # Thêm intents từ prompt, tránh trùng lặp
   bot.prompts.each do |p|
-    intent_name = "custom_intent_#{p.id}"
+    # Bỏ qua prompt nếu thiếu câu hỏi hoặc trả lời
+    next if p.question.blank? || p.answer.blank?
+
+    # Dùng category nếu có, nếu không dùng mặc định "khac"
+    category_name = p.prompt_category&.name || "khac"
+
+    # Tạo intent name và response name
+    intent_name = "intent_#{category_name.parameterize(separator: '_')}_#{Digest::MD5.hexdigest(p.question)[0..5]}"
+    response_name = "utter_#{intent_name}"
+
     domain_data["intents"] << intent_name unless domain_data["intents"].include?(intent_name)
 
-    # Thêm response tương ứng
-    response_name = "utter_#{intent_name}"
     unless domain_data["responses"].key?(response_name)
-      domain_data["responses"][response_name] = [ { "text" => p.answer.gsub('"', '\"') } ]
+      domain_data["responses"][response_name] = [ { "text" => p.answer } ]
     end
   end
 
-  # Giữ nguyên các phần khác như entities, session_config nếu có
-
   File.write(domain_path, domain_data.to_yaml)
+  puts "✅ Đã tạo domain.yml tại: #{domain_path}"
   end
+
 
 
   def generate_training_data(bot)

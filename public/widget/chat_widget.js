@@ -1,47 +1,49 @@
 (function () {
-  const script = document.currentScript;
-  const botIdentifier = script.getAttribute("data-bot");
+  const scripts = document.querySelectorAll('script[src*="chat_widget.js"]');
+  const currentScript = scripts[scripts.length - 1];
+  const botIdentifier = currentScript?.getAttribute("data-bot");
 
-  const formContainer = document.createElement("div");
-  formContainer.style.position = "fixed";
-  formContainer.style.bottom = "20px";
-  formContainer.style.right = "20px";
-  formContainer.style.width = "350px";
-  formContainer.style.padding = "20px";
-  formContainer.style.background = "#fff";
-  formContainer.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
-  formContainer.style.zIndex = "9999";
-  formContainer.style.borderRadius = "8px";
-  formContainer.innerHTML = `
-    <h4 style="margin-top: 0;">Liên hệ để chat</h4>
-    <input id="userName" placeholder="Tên của bạn" style="width: 100%; margin-bottom: 10px; padding: 8px;" />
-    <input id="userPhone" placeholder="Số điện thoại" style="width: 100%; margin-bottom: 10px; padding: 8px;" />
-    <button id="startChat" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px;">Bắt đầu</button>
-  `;
-  document.body.appendChild(formContainer);
+  if (!botIdentifier) {
+    console.error("Thiếu data-bot!");
+    return;
+  }
 
-  document.getElementById("startChat").addEventListener("click", function () {
-    const name = document.getElementById("userName").value.trim();
-    const phone = document.getElementById("userPhone").value.trim();
-
-    if (!name || !phone) {
-      alert("Vui lòng nhập đầy đủ tên và số điện thoại.");
-      return;
-    }
-
-    // Ẩn form
-    formContainer.style.display = "none";
-
-    // Hiển thị iframe chat
+  window.addEventListener("DOMContentLoaded", () => {
     const iframe = document.createElement("iframe");
-    iframe.src = `http://localhost:3000/embed_chat?bot_identifier=${botIdentifier}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
     iframe.style.position = "fixed";
     iframe.style.bottom = "20px";
     iframe.style.right = "20px";
-    iframe.style.width = "350px";
-    iframe.style.height = "500px";
-    iframe.style.border = "none";
+    iframe.style.width = "1000px";
+    iframe.style.height = "1000px";
     iframe.style.zIndex = "9999";
+    iframe.style.border = "none";
+    iframe.style.borderRadius = "15px";
+
+    // Truyền botIdentifier vào URL
+    iframe.src = `http://localhost:3000/embed_chat?bot_identifier=${encodeURIComponent(
+      botIdentifier
+    )}`;
+
     document.body.appendChild(iframe);
+
+    // Nếu muốn truyền thêm dữ liệu sau khi iframe load, dùng postMessage
+    iframe.onload = () => {
+      iframe.contentWindow.postMessage({ botIdentifier: botIdentifier }, "*");
+    };
+
+    // Xử lý form chat widget (ví dụ khi submit form)
+    const chatForm = document.getElementById("chat-form");
+    if (chatForm) {
+      chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name")?.value || "";
+        const phone = document.getElementById("phone")?.value || "";
+
+        // Cập nhật src iframe khi có thông tin
+        iframe.src = `http://localhost:3000/embed_chat?bot_identifier=${encodeURIComponent(
+          botIdentifier
+        )}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
+      });
+    }
   });
 })();
