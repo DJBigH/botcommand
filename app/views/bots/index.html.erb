@@ -11,21 +11,28 @@
   <body>
     <div class="container mt-2">
       <h1 class="text-center">Danh sách Bot</h1>
-      <% if flash[:notice] %>
-        <div class="alert alert-success">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-      <% if flash[:error] %>
-        <div class="alert alert-danger">
-          <%= flash[:error] %>
-        </div>
-      <% end %>
-      <% if flash[:alert] %>
-        <div class="alert alert-success">
-          <%= flash[:alert] %>
-        </div>
-      <% end %>
+      <div class="text-right mb-3">
+        <%= link_to 'Danh sách trò chuyện', admin_chatsessions_path, class: 'btn btn-info' %>
+      </div>
+
+        <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+
+        <% if flash[:error] %>
+          <div class="alert alert-danger">
+            <%= flash[:error] %>
+          </div>
+        <% end %>
+
+
+        <% if flash[:alert] %>
+          <div class="alert alert-success">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
       <%= link_to 'Tạo bot mới', new_bot_path, class: 'btn btn-primary mb-2 float-right' %>
       <table class="table table-bordered">
         <thead>
