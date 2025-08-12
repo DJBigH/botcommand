@@ -1,108 +1,454 @@
-<!-- app/views/chat/embed_chat.html.erb -->
-<div id="chat-widget" style="font-family: Arial, sans-serif; max-width: 350px; position: fixed; bottom: 20px; right: 20px; border: 1px solid #ccc; border-radius: 8px; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: flex; flex-direction: column; height: 500px;">
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #007bff; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px;">
-    <h3 style="margin: 0; font-size: 1.1rem;  padding: 15px">Chat với Bot: <%= @bot.name %></h3>
-    <button id="toggle-btn" style="background: transparent; border: none; color: white; font-size: 20px; cursor: pointer;" aria-label="Toggle chat window">&#x2212;</button>
-  </div>
-
-  <div id="chat-content" style="flex: 1; overflow-y: auto; padding: 8px; background: #fafafa;">
-  <div id="chat-messages" style="display: flex; flex-direction: column;"></div>
-  </div>
-
-
-  <form id="chat-form" style="display: flex; gap: 5px; padding: 8px; border-top: 1px solid #ccc;">
-    <input id="message-input" type="text" placeholder="Nhập tin nhắn..." style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" autocomplete="off" required />
-    <button type="submit" style="padding: 8px 12px; border:none; background: #007bff; color: white; border-radius: 4px; cursor: pointer;">Gửi</button>
-  </form>
-</div>
-
-<script>
-  
-  const chatWidget = document.getElementById('chat-widget');
-  const toggleBtn = document.getElementById('toggle-btn');
-  const chatContent = document.getElementById('chat-content');
-  const chatForm = document.getElementById('chat-form');
-  const messageInput = document.getElementById('message-input');
-  const chatMessages = document.getElementById('chat-messages');
-
-  // Hàm thêm tin nhắn
-    function appendMessage(text, sender = 'bot') {
-    const msgDiv = document.createElement('div');
-    msgDiv.style.marginBottom = '8px';
-    msgDiv.style.padding = '6px 10px';
-    msgDiv.style.borderRadius = '12px';
-    msgDiv.style.maxWidth = '80%';
-
-    if(sender === 'user') {
-      msgDiv.style.backgroundColor = '#007bff';
-      msgDiv.style.color = 'white';
-      msgDiv.style.marginLeft = 'auto';
-    } else {
-      msgDiv.style.backgroundColor = '#e5e5ea';
-      msgDiv.style.color = '#333';
-      msgDiv.style.marginRight = 'auto';
-    }
-    msgDiv.textContent = text;
-    chatMessages.appendChild(msgDiv);
-
-    // ✅ Scroll đến cuối nội dung
-    chatContent.scrollTop = chatContent.scrollHeight;
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="<%= asset_path 'actioncable.js' %>"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+      .chatAi {
+  position: fixed;  
+  bottom: 60px;
+  right: 20px;
+  width: 30%;
+  @media (max-width: 1200px) {
+    width: 60%;
   }
-
-
-
-    toggleBtn.addEventListener('click', () => {
-    if (chatContent.style.display === 'none') {
-      chatContent.style.display = 'block';
-      chatForm.style.display = 'flex';
-      toggleBtn.innerHTML = '&#x2212;';
-      chatWidget.style.height = '500px';
-    } else {
-      chatContent.style.display = 'none';
-      chatForm.style.display = 'none';
-      toggleBtn.innerHTML = '&#x2b;'; // dấu cộng
-      chatWidget.style.height = '60px'; // tăng lên để header hiện rõ
+  .chatAi-block.show {
+    transform: scale(1, 1);
+    /* scale: 1; */
+    /* height: 100%; */
+    transform-origin: right -100px;
+    overflow: hidden;
+    width: 100%;
+    /* @keyframes w {
+      0% {
+        width: 0px;
+      }
+      100% {
+        width: 100%;
+      }
+    } */
+  }
+  .chatAi-block {
+    transform: scale(0, 0);
+    /* scale: 0.6; */
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    
+    .form-hello {
+      .form-header {
+        .form-header-title {
+          font-weight: 600;
+          font-size: 20px;
+        }
+        .form-header-des {
+          font-size: 14px;
+        }
+      }
+      .form-body {
+        background: #ececec;
+        border-radius: 15px;
+        padding: 10px 20px;
+        legend {
+          font-weight: 600;
+          font-size: 16px;
+        }
+        .form-group {
+          label {
+            font-size: 14px;
+            font-weight: 600;
+          }
+          input {
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+          }
+        }
+      }
     }
+    .form-main {
+      .form-main-header {
+        align-items: center;
+        padding-bottom: 16px;
+        gap: 4px;
+        i {
+          font-size: 20px;
+          padding: 8px 16px;
+          cursor: pointer;
+          border-radius: 8px;
+        }
+        @media (hover: hover) {
+          i:hover {
+            background: #cccccc2a;
+          }
+          i:active {
+            box-shadow: 0 0 1px 2px #bebebe;
+          }
+        }
+        .form-main-header-text {
+          legend {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.2;
+          }
+          p {
+            margin: 0;
+            font-size: 14px;
+          }
+        }
+      }
+      .form-main-chat {
+        background-color: rgb(249 249 251 / 1);
+        height: 400px;
+        overflow-y: scroll;
+        padding: 20px 4px 20px 15px;
+        .form-main-chat-block {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          li {
+            font-size: 14px;
+            color: white;
+            text-wrap: wrap;
+            display: block;
+            span {
+              position: relative;
+              margin-bottom: 10px;
+              display: inline-block;
+              padding: 10px 20px;
+              border-radius: 20px;
+              max-width: 90%;
+            }
+          }
+          .admin {
+            text-align: right;
+            span {
+              background: red;
+            }
+          }
+          .user {
+            text-align: right;
+            span {
+              background: blue;
+            }
+          }
+          .botai span {
+            background: #ccc;
+            color: black;
+          }
+        }
+      }
+      .form-main-insearch {
+        padding-top: 16px;
+        .form-main-insearch-block {
+          border: 1px solid #ccc;
+          border-radius: 15px;
+          overflow: hidden;
+          min-height: 100%;
+          height: 48px;
+        }
+        input {
+          padding: 8px 12px;
+          border: none;
+          width: 100%;
+          outline: none;
+        }
+        textarea {
+          display: none;
+          resize: none;
+          outline: none;
+          border: none;
+          width: 100%;
+          height: 100%;
+          padding: 8px 12px;
+        }
+        button {
+          margin: 4px;
+          padding: 8px 20px;
+          border-radius: 10px;
+          border: none;
+          outline: none;
+          background: blue;
+          color: white;
+          position: relative;
+          span {
+            display: block;
+            width: 100%;
+            font-size: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+  }
+}
+.chatAi-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50px;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  .chatAi-btn-close {
+    transform: translateX(20px);
+    transition: transform .3s ease ;
+  }
+}
+.chatAi-btn:not(.collapse) {
+  .chatAi-btn-close {
+    display: none;
+  }
+}
+.chatAi-btn[aria-expanded="true"] {
+  .chatAi-btn-close {
+    display: block;
+    transform: translate(0);
+  }
+  .chatAi-btn-active {
+    display: none;
+  }
+}
+/* icon */
+.lets-icons--send-hor-fill::after {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  vertical-align: -0.125em;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='m6.998 10.247l.435.76c.277.485.415.727.415.993s-.138.508-.415.992l-.435.761c-1.238 2.167-1.857 3.25-1.375 3.788c.483.537 1.627.037 3.913-.963l6.276-2.746c1.795-.785 2.693-1.178 2.693-1.832s-.898-1.047-2.693-1.832L9.536 7.422c-2.286-1-3.43-1.5-3.913-.963s.137 1.62 1.375 3.788'/%3E%3C/svg%3E");
+}
+
+      </style>
+  </head>
+  <body>
+      <section class="chatAi">
+    <div class="chatAi-block p-3 mb-4 collapse" id="formChat">
+      <!-- Form thông tin -->
+      <form class="form-block-1" id="form-1">
+        <fieldset class="form-hello">
+          <div class="form-header">
+            <h2 class="form-header-title">Xin chào</h2>
+            <p class="form-header-des">Bạn đang có bất kỳ câu hỏi nào về [Sản phẩm/Dịch vụ]? Hãy chọn 'Trò chuyện với chúng tôi'.</p>
+          </div>
+          <div class="form-body">
+            <legend>Thông tin của bạn</legend>
+            <div class="form-group">
+              <label for="name">Họ tên</label>
+              <input type="text" id="name" name="name" required placeholder="Nhập họ tên..." class="form-control">
+                        <input type="hidden" id="bot_identifier" name="bot_identifier" required placeholder="Nhập họ tên..." class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="phone">Số điện thoại</label>
+              <input type="tel" id="phone" name="phone" required placeholder="Nhập số điện thoại..." pattern="[0-9\s]{10,11}" class="form-control">
+            </div>
+            
+            <div class="form-footer text-center">
+              <button class="btn btn-primary" id="form-infor" type="submit">Chat với AI</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+      <!-- Form chat -->
+      <form class="form-block-2 collapse" id="form-2">
+        <fieldset class="form-main">
+          <div class="form-main-header d-flex">
+            <i class="bi bi-chevron-left" id="back"></i>
+            <div class="form-main-header-text">
+              <legend>Góc hỗ trợ</legend>
+              <p>AI đã sẵn sàng phục vụ</p>
+            </div>
+          </div>
+          <div class="form-main-chat">
+            <ul class="form-main-chat-block" id="form-main-chat-block"></ul>
+          </div>
+          <div class="form-main-insearch">
+            <div class="form-main-insearch-block d-flex">
+              <input type="text" id="chat-input" placeholder="Nhập tin nhắn..." class="form-control" required>
+              <button class="btn btn-primary" type="submit"><span class="lets-icons--send-hor-fill"></span></button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
+  <!-- Nút bật/tắt -->
+  <button class="chatAi-btn btn btn-primary" data-toggle="collapse" data-target="#formChat" type="button" id="btn-chat">
+    <svg class="chatAi-btn-active" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+      viewBox="0 0 16 16">
+      <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13 -.771 2.966"/>
+    </svg>
+  </button>
+  <button class="chatAi-btn btn btn-primary" data-toggle="collapse" data-target="#formChat" type="submit" id="btn-chat">
+    <svg class="chatAi-btn-active" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+      class="bi bi-chat-fill" viewBox="0 0 16 16">
+      <path
+        d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13 -.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15" />
+    </svg>
+    <svg class="chatAi-btn-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+      class="bi bi-x" viewBox="-1 0 16 16">
+      <path
+        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+    </svg>
+  </button>
+<script>
+      let botIdentifier = new URLSearchParams(window.location.search).get('bot_identifier') || '';
+
+    window.addEventListener("message", (event) => {
+      if (event.data && event.data.botIdentifier) {
+        botIdentifier = event.data.botIdentifier;
+        console.log("Bot Identifier nhận từ postMessage:", botIdentifier);
+      }
     });
+    document.getElementById('form-1').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    console.log('Bot Identifier:', botIdentifier);
+    const name = document.getElementById('name').value.trim();
+    console.log('Name:', name);
+    const phone = document.getElementById('phone').value.trim();
+    console.log('Phone:', phone);
+    const btnBack = document.getElementById("back");
+      const btnFormInfor = document.getElementById("form-infor");
+    const form1 = document.getElementById("form-1");
+      const form2 = document.getElementById("form-2");
+       btnFormInfor.addEventListener("click", function (e) {
+        // e.preventDefault(); // Ngăn chặn submit form
+        form1.classList.add("collapse");
+      });
+    btnBack.addEventListener("click", function () {
+            form1.classList.remove("collapse");
+            form2.classList.remove("show");
+          });
+    if (!name || !phone) {
+      alert('Vui lòng nhập đầy đủ họ tên, số điện thoại');
+      return;
+    }
+  
+    try {
+      const response = await fetch('http://localhost:3000/api/chatsessions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bot_identifier: botIdentifier, name, phone })
+      });
 
+      const result = await response.json();
 
-    // Xử lý gửi tin nhắn
+      if (response.ok && result.id) {
+        window.chatUser = { name, phone, sessionId: result.id };
+
+        document.getElementById('form-1').classList.add('collapse');
+        document.getElementById('form-2').classList.remove('collapse');
+
+        initChat(name, phone, result.id);
+      } else {
+        alert(result.error || 'Tạo phiên chat thất bại, vui lòng thử lại.');
+      }
+    } catch (error) {
+      alert('Lỗi kết nối server, vui lòng thử lại sau.');
+      console.error(error);
+    }
+  });
+
+  function initChat(name, phone, sessionId) {
+    const chatForm = document.getElementById('form-2');
+    const chatInput = document.getElementById('chat-input');
+    const chatBlock = document.getElementById('form-main-chat-block');
+
+    const cable = ActionCable.createConsumer("ws://localhost:3000/cable");
+    const chatChannel = cable.subscriptions.create(
+      { channel: "ChatChannel", chat_id: sessionId },
+      {
+        received(data) {
+          if (data.sender !== name) {
+            appendMessage(data.message, 'bot');
+          }
+        }
+      }
+    );
+
     chatForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      const message = messageInput.value.trim();
-      if(!message) return;
+      const message = chatInput.value.trim();
+      if (!message) return;
 
       appendMessage(message, 'user');
-      messageInput.value = '';
-      messageInput.disabled = true;
-      fetch('http://localhost:<%= @bot.port %>/webhooks/rest/webhook', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      sender: 'Khách hàng',
-      message: message
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if(Array.isArray(data) && data.length > 0){
-      data.forEach(reply => {
-        if(reply.text) appendMessage(reply.text, 'bot');
-      });
-    } else {
-      appendMessage('Xin lỗi, tôi chưa hiểu ý bạn.', 'bot');
-    }
-    messageInput.disabled = false;
-    messageInput.focus();
-  })
-  .catch(err => {
-    appendMessage('Bot hiện không hoạt động, xin vui lòng thử lại sau.', 'bot');
-    messageInput.disabled = false;
-    messageInput.focus();
-  });
+      chatInput.value = '';
+      chatInput.disabled = true;
 
-  });
+      chatChannel.send({
+        sender: name,
+        message: message
+      });
+
+      fetch(`http://localhost:<%= @bot.port %>/webhooks/rest/webhook`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sender: sessionId,
+          message: message
+        })
+      }).then(res => res.json())
+        .then(data => {
+          if (Array.isArray(data) && data.length > 0) {
+            data.forEach(reply => {
+              if (reply.text) {
+                chatChannel.send({
+                  sender: 'bot',
+                  message: reply.text
+                });
+              }
+            });
+          } else {
+            chatChannel.send({
+              sender: 'bot',
+              message: 'Xin lỗi, tôi chưa hiểu ý bạn.'
+            });
+          }
+          chatInput.disabled = false;
+          chatInput.focus();
+        })
+        .catch(() => {
+          chatChannel.send({
+            sender: 'bot',
+            message: 'Bot hiện không hoạt động, xin vui lòng thử lại sau.'
+          });
+          chatInput.disabled = false;
+          chatInput.focus();
+        });
+    });
+
+    function appendMessage(message, sender) {
+      const li = document.createElement('li');
+      li.classList.add(sender === 'bot' ? 'botai' : sender === 'user' ? 'user' : 'admin');
+      const span = document.createElement('span');
+      span.textContent = message;
+      li.appendChild(span);
+      chatBlock.appendChild(li);
+      chatBlock.scrollTop = chatBlock.scrollHeight;
+    }
+  }
 </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
+

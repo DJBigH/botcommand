@@ -1,0 +1,6 @@
+<%= form.select :category, PromptCategory.pluck(:name), include_blank: "Chọn phân loại", id: "category_select" %>
+
+<div id="custom_category_input" style="display: none;">
+  <%= form.label :custom_category, "Nhập phân loại khác:" %>
+  <%= form.text_field :custom_category %>
+</div>
