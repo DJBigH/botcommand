@@ -412,15 +412,26 @@
           });
       });
 
-      function appendMessage(message, sender) {
-        const li = document.createElement('li');
-        li.classList.add(sender === 'bot' ? 'botai' : sender === 'user' ? 'user' : 'admin');
-        const span = document.createElement('span');
-        span.textContent = message;
-        li.appendChild(span);
-        chatBlock.appendChild(li);
-        chatBlock.scrollTop = chatBlock.scrollHeight;
-      }
+     function appendMessage(message, sender) {
+  const li = document.createElement('li');
+  li.classList.add(
+    sender === 'bot' ? 'botai' :
+    sender === 'user' ? 'user' : 'admin'
+  );
+
+  const span = document.createElement('span');
+  span.textContent = message;
+  li.appendChild(span);
+
+  chatBlock.appendChild(li);
+
+  // Đợi trình duyệt render rồi mới cuộn
+  requestAnimationFrame(() => {
+    chatBlock.scrollTop = chatBlock.scrollHeight;
+  });
+}
+
+
     }
   </script>
   <!-- Optional JavaScript -->
