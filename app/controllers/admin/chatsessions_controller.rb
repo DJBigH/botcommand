@@ -11,7 +11,6 @@ class Admin::ChatsessionsController < ApplicationController
   @chat_messages = @chat_session.chat_messages.order(:created_at)
   end
 
-
   def create
   bot = Bot.find_by(bot_identifier: params[:bot_identifier])
   return render json: { error: 'Bot không tồn tại' }, status: :not_found unless bot

@@ -92,12 +92,17 @@ class BotsController < ApplicationController
   @bot.update(status: "training")
 
   generate_domain_file(@bot)
+  update_nlu_file(@bot)
+  update_stories_file(@bot)
+  update_rules_file(@bot)
+
   train_bot(@bot.path)
   stop_bot(@bot.port, @bot.action_port)
   @bot.update(status: "not_started")
 
   redirect_to bot_path(@bot), notice: "Train thành công! Bot đã sẵn sàng để khởi động."
   end
+
 
 
   def run
@@ -141,37 +146,52 @@ class BotsController < ApplicationController
   params.require(:prompt).permit(:question, :answer, :category)
   end
 
-  # Cập nhật hoặc thêm intent mới vào nlu.yml (không ghi đè file)
-  def update_nlu_file(bot, new_prompt)
+  # Cập nhật hoặc thêm toàn bộ intents từ bot.prompts vào nlu.yml
+  def update_nlu_file(bot)
   nlu_path = File.join(bot.path, "data", "nlu.yml")
-  FileUtils.mkdir_p(File.dirname(nlu_path)) unless Dir.exist?(File.dirname(nlu_path))
+  FileUtils.mkdir_p(File.dirname(nlu_path))
 
+  # Load dữ liệu NLU cũ nếu có
   nlu_data = if File.exist?(nlu_path)
-             loaded = YAML.load_file(nlu_path)
-             loaded.is_a?(Hash) ? loaded : { "version" => "3.1", "nlu" => [] }
-  else
-             { "version" => "3.1", "nlu" => [] }
-  end
+               loaded = YAML.load_file(nlu_path)
+               loaded.is_a?(Hash) ? loaded : { "version" => "3.1", "nlu" => [] }
+             else
+               { "version" => "3.1", "nlu" => [] }
+             end
 
+  # Tìm số thứ tự custom_intent lớn nhất hiện có
+  last_number = nlu_data["nlu"]
+                  .map { |i| i["intent"] }
+                  .grep(/^custom_intent_\d+$/)
+                  .map { |name| name.split("_").last.to_i }
+                  .max || 0
 
-  intent_name = "intent_#{p.prompt_category.name.parameterize(separator: '_')}_#{Digest::MD5.hexdigest(p.question)[0..5]}"
-  example_line = "- #{new_prompt.question.strip}"
+  bot.prompts.each do |prompt|
+    example_line = "- #{prompt.question.strip}"
 
-  existing_intent = nlu_data["nlu"].find { |intent| intent["intent"] == intent_name }
-
-  if existing_intent
-    examples_lines = existing_intent["examples"].split("\n").map(&:strip)
-    unless examples_lines.include?(example_line)
-      examples_lines << example_line
-      existing_intent["examples"] = examples_lines.join("\n")
+    # Kiểm tra xem đã tồn tại intent nào chứa câu hỏi này chưa
+    existing_intent = nlu_data["nlu"].find do |intent|
+      intent["examples"].to_s.include?(example_line)
     end
-  else
-    nlu_data["nlu"] << {
-      "intent" => intent_name,
-      "examples" => "#{example_line}\n"
-    }
+
+    if existing_intent
+      examples_lines = existing_intent["examples"].split("\n").map(&:strip)
+      unless examples_lines.include?(example_line)
+        examples_lines << example_line
+        existing_intent["examples"] = examples_lines.join("\n")
+      end
+    else
+      # Tạo intent mới với số tăng dần
+      last_number += 1
+      intent_name = "custom_intent_#{last_number}"
+      nlu_data["nlu"] << {
+        "intent" => intent_name,
+        "examples" => "#{example_line}\n"
+      }
+    end
   end
 
+  # Ghi lại file nlu.yml theo format chuẩn
   File.open(nlu_path, "w") do |file|
     file.puts "version: '3.1'"
     file.puts "nlu:"
@@ -187,44 +207,64 @@ class BotsController < ApplicationController
 
 
 
+
+
   def generate_domain_file(bot)
   domain_path = File.join(bot.path, "domain.yml")
 
-  # Đọc domain.yml cũ nếu có, nếu không thì khởi tạo mặc định
+  # Load domain.yml cũ nếu có
   domain_data = if File.exist?(domain_path)
-                  loaded = YAML.load_file(domain_path)
-                  loaded.is_a?(Hash) ? loaded : {}
-  else
+                  YAML.load_file(domain_path) || {}
+                else
                   {}
-  end
+                end
 
   domain_data["version"] ||= "3.1"
   domain_data["intents"] ||= []
   domain_data["responses"] ||= {}
+  domain_data["actions"] ||= []  # giữ lại custom actions
 
-  # Thêm intents từ prompt, tránh trùng lặp
   bot.prompts.each do |p|
-    # Bỏ qua prompt nếu thiếu câu hỏi hoặc trả lời
     next if p.question.blank? || p.answer.blank?
 
-    # Dùng category nếu có, nếu không dùng mặc định "khac"
-    category_name = p.prompt_category&.name || "khac"
-
-    # Tạo intent name và response name
-    intent_name = "intent_#{category_name.parameterize(separator: '_')}_#{Digest::MD5.hexdigest(p.question)[0..5]}"
+    # Tên intent đồng bộ cho tất cả file
+    intent_name   = "custom_intent_#{p.id}"
     response_name = "utter_#{intent_name}"
 
+    # Thêm intent nếu chưa có
     domain_data["intents"] << intent_name unless domain_data["intents"].include?(intent_name)
 
-    unless domain_data["responses"].key?(response_name)
-      domain_data["responses"][response_name] = [ { "text" => p.answer } ]
+    # Thêm hoặc hợp nhất câu trả lời
+    if domain_data["responses"][response_name]
+      unless domain_data["responses"][response_name].any? { |r| r["text"] == p.answer }
+        domain_data["responses"][response_name] << { "text" => p.answer }
+      end
+    else
+      domain_data["responses"][response_name] = [{ "text" => p.answer }]
     end
   end
 
-  File.write(domain_path, domain_data.to_yaml)
-  puts "✅ Đã tạo domain.yml tại: #{domain_path}"
+  # Ghi file domain.yml theo chuẩn format Rasa
+  File.open(domain_path, "w") do |file|
+    file.puts "version: '3.1'"
+
+    file.puts "intents:"
+    domain_data["intents"].each { |intent| file.puts "- #{intent}" }
+
+    file.puts "responses:"
+    domain_data["responses"].each do |resp, texts|
+      file.puts "  #{resp}:"
+      texts.each { |t| file.puts "  - text: #{t['text']}" }
+    end
+
+    unless domain_data["actions"].empty?
+      file.puts "actions:"
+      domain_data["actions"].each { |a| file.puts "- #{a}" }
+    end
   end
 
+  puts "✅ domain.yml đã được cập nhật: #{domain_path}"
+  end
 
 
   def generate_training_data(bot)
@@ -290,9 +330,6 @@ class BotsController < ApplicationController
   end
 
 
-
-
-
   def wait_for_rasa_ready(port)
   20.times do |i|   # tăng lên 20 lần
     sleep 3         # mỗi lần chờ 3 giây → tổng 60 giây
@@ -356,7 +393,7 @@ class BotsController < ApplicationController
   port
   end
 
- def next_available_actions_port(start_actions_port = 5055)
+  def next_available_actions_port(start_actions_port = 5055)
   used_action_ports = Bot.pluck(:action_port)
   action_port = start_actions_port
 

@@ -1,7 +1,7 @@
 class ChatController < ApplicationController
     after_action :allow_iframe, only: [:embed_chat]
 
- def embed_chat
+  def embed_chat
   bot_identifier = params[:bot_identifier]
   @bot = Bot.find_by(bot_identifier: bot_identifier)
 
