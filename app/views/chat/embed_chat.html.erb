@@ -100,6 +100,7 @@
               overflow-y: scroll;
               padding: 20px 4px 20px 15px;
               .form-main-chat-block {
+                overflow-y: auto;
                 list-style-type: none;
                 margin: 0;
                 padding: 0;
@@ -115,6 +116,15 @@
                     padding: 10px 20px;
                     border-radius: 20px;
                     max-width: 90%;
+                    animation: pop 0.3s ease;
+                    @keyframes pop {
+                      0% {
+                        max-width: 0;
+                      }
+                      100% {
+                        max-width: 100%;
+                      }
+                    }
                   }
                 }
                 .admin {
@@ -148,7 +158,11 @@
                 padding: 8px 12px;
                 border: none;
                 width: 100%;
+                height: 100%;
                 outline: none;
+              }
+              .form-control:focus {
+                box-shadow: none;
               }
               textarea {
                 display: none;
@@ -243,8 +257,7 @@
             </div>
             
             <div class="form-footer text-center">
-              <button class="btn btn-primary" id="form-infor" type="submit" id="form-infor" type="submit" data-toggle="collapse"
-                data-target="#form-2">Chat với AI</button>
+              <button class="btn btn-primary" id="form-infor" type="submit">Chat với AI</button>
             </div>
           </div>
         </fieldset>
@@ -295,59 +308,64 @@
         console.log("Bot Identifier nhận từ postMessage:", botIdentifier);
       }
     });
-    document.getElementById('form-1').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      console.log('Bot Identifier:', botIdentifier);
-      const name = document.getElementById('name').value.trim();
-      console.log('Name:', name);
-      const phone = document.getElementById('phone').value.trim();
-      console.log('Phone:', phone);
-      const btnBack = document.getElementById("back");
       const btnFormInfor = document.getElementById("form-infor");
       const form1 = document.getElementById("form-1");
       const form2 = document.getElementById("form-2");
       btnFormInfor.addEventListener("click", function (e) {
-        form1.classList.add("collapse");
-      });
-      btnBack.addEventListener("click", function () {
-        form1.classList.remove("collapse");
-        form2.classList.remove("show");
-      });
-      if (!name || !phone) {
-        alert('Vui lòng nhập đầy đủ họ tên, số điện thoại');
-        return;
-      }
-      try {
-        const response = await fetch('http://localhost:3000/api/chatsessions', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ bot_identifier: botIdentifier, name, phone })
+
+        form1.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          console.log('Bot Identifier:', botIdentifier);
+          const name = document.getElementById('name').value.trim();
+          console.log('Name:', name);
+          const phone = document.getElementById('phone').value.trim();
+          console.log('Phone:', phone);
+          
+          if (!name || !phone) {
+            alert('Vui lòng nhập đầy đủ họ tên, số điện thoại');
+            return;
+          }
+          try {
+            const response = await fetch('http://localhost:3000/api/chatsessions', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ bot_identifier: botIdentifier, name, phone })
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.id) {
+              window.chatUser = { name, phone, sessionId: result.id };
+
+              // document.getElementById('form-1').classList.add('collapse');
+              // document.getElementById('form-2').classList.remove('collapse');
+              form1.classList.add("collapse");
+              form2.classList.add("show");
+
+              initChat(name, phone, result.id);
+            } 
+            else {
+              alert(result.error || 'Tạo phiên chat thất bại, vui lòng thử lại.');
+            }
+          } 
+          catch (error) {
+            alert('Lỗi kết nối server, vui lòng thử lại sau.');
+            console.error(error);
+          }
         });
-
-        const result = await response.json();
-
-        if (response.ok && result.id) {
-          window.chatUser = { name, phone, sessionId: result.id };
-
-          document.getElementById('form-1').classList.add('collapse');
-          document.getElementById('form-2').classList.remove('collapse');
-
-          initChat(name, phone, result.id);
-        } 
-        else {
-          alert(result.error || 'Tạo phiên chat thất bại, vui lòng thử lại.');
-        }
-      } 
-      catch (error) {
-        alert('Lỗi kết nối server, vui lòng thử lại sau.');
-        console.error(error);
-      }
-    });
+      });      
+    const btnBack = document.getElementById("back");
+    btnBack.addEventListener("click", function () {
+        form1.classList.remove("collapse");
+        form2.classList.add("collapse");
+        form2.classList.remove("show")
+      });
 
     function initChat(name, phone, sessionId) {
       const chatForm = document.getElementById('form-2');
       const chatInput = document.getElementById('chat-input');
       const chatBlock = document.getElementById('form-main-chat-block');
+      const chatContainer = $('.form-main-chat');
 
       const cable = ActionCable.createConsumer("ws://localhost:3000/cable");
       const chatChannel = cable.subscriptions.create(
@@ -421,8 +439,30 @@
         chatBlock.appendChild(li);
         chatBlock.scrollTop = chatBlock.scrollHeight;
       }
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     }
   </script>
+  <script>
+    // Lấy phần tử chứa tin nhắn
+    const $messageContainer = $('.form-main-chat');
+
+    // Cuộn xuống cuối với hiệu ứng animation
+    function scrollToBottomWithAnimation() {
+      $messageContainer.animate({
+        scrollTop: $messageContainer.prop("scrollHeight")
+      }, 500); // 500ms là thời gian hiệu ứng cuộn
+    }
+
+    // Gọi hàm này sau mỗi lần thêm tin nhắn mới
+    // Ví dụ:
+    function addNewMessage(message) {
+      // const newMessageDiv = `<div>${message}</div>`;
+      // $messageContainer.append(newMessageDiv);
+
+      scrollToBottomWithAnimation();
+    }
+  </script>
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
