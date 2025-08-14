@@ -7,18 +7,42 @@
     console.error("Thiếu data-bot!");
     return;
   }
-
+  // $(".chatAi-block.show").addEventListener("DOMContentLoaded", () => {
+  //   iframe.style.width = "500px";
+  //   iframe.style.height = "800px";
+  // })
   window.addEventListener("DOMContentLoaded", () => {
     const iframe = document.createElement("iframe");
     iframe.style.position = "fixed";
     iframe.style.bottom = "20px";
     iframe.style.right = "20px";
-    iframe.style.width = "1000px";
-    iframe.style.height = "1000px";
-    iframe.style.zIndex = "9999";
+    iframe.style.width = "500px";
+    iframe.style.height = "700px";
+    iframe.style.zIndex = "-1";
     iframe.style.border = "none";
-    iframe.style.borderRadius = "15px";
 
+    // $('#btn-chat').click(function (event) {
+    //   iframe.classList.add("add");
+    //   console.log("da add")
+    //   iframe.style.width = "100px";
+    //   iframe.style.height = "700px";
+    // })
+
+    // var btnChat = document.getElementById('btn-chat');
+    // btnChat.addEventListener('click', function () {
+    //   // var iframe = document.querySelector('iframe');
+    //   iframe.classList.add('add');
+    //   console.log("da add");
+    //   iframe.style.width = '100px';
+    //   iframe.style.height = '700px';
+    // });
+
+
+    // else 
+    // {
+    //   // Phần tử không có lớp .show
+    //   console.log('Phần tử không có lớp .show');
+    // }
     // Truyền botIdentifier vào URL
     iframe.src = `http://localhost:3000/embed_chat?bot_identifier=${encodeURIComponent(
       botIdentifier
