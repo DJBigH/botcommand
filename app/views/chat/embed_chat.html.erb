@@ -243,7 +243,8 @@
             </div>
             
             <div class="form-footer text-center">
-              <button class="btn btn-primary" id="form-infor" type="submit">Chat với AI</button>
+              <button class="btn btn-primary" id="form-infor" type="submit" id="form-infor" type="submit" data-toggle="collapse"
+                data-target="#form-2">Chat với AI</button>
             </div>
           </div>
         </fieldset>
@@ -306,7 +307,6 @@
       const form1 = document.getElementById("form-1");
       const form2 = document.getElementById("form-2");
       btnFormInfor.addEventListener("click", function (e) {
-        // e.preventDefault(); // Ngăn chặn submit form
         form1.classList.add("collapse");
       });
       btnBack.addEventListener("click", function () {
