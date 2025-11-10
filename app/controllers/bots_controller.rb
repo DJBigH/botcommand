@@ -155,9 +155,9 @@ class BotsController < ApplicationController
   nlu_data = if File.exist?(nlu_path)
                loaded = YAML.load_file(nlu_path)
                loaded.is_a?(Hash) ? loaded : { "version" => "3.1", "nlu" => [] }
-             else
+  else
                { "version" => "3.1", "nlu" => [] }
-             end
+  end
 
   # Tìm số thứ tự custom_intent lớn nhất hiện có
   last_number = nlu_data["nlu"]
@@ -215,9 +215,9 @@ class BotsController < ApplicationController
   # Load domain.yml cũ nếu có
   domain_data = if File.exist?(domain_path)
                   YAML.load_file(domain_path) || {}
-                else
+  else
                   {}
-                end
+  end
 
   domain_data["version"] ||= "3.1"
   domain_data["intents"] ||= []
@@ -240,7 +240,7 @@ class BotsController < ApplicationController
         domain_data["responses"][response_name] << { "text" => p.answer }
       end
     else
-      domain_data["responses"][response_name] = [{ "text" => p.answer }]
+      domain_data["responses"][response_name] = [ { "text" => p.answer } ]
     end
   end
 
@@ -251,11 +251,12 @@ class BotsController < ApplicationController
     file.puts "intents:"
     domain_data["intents"].each { |intent| file.puts "- #{intent}" }
 
-    file.puts "responses:"
-    domain_data["responses"].each do |resp, texts|
-      file.puts "  #{resp}:"
-      texts.each { |t| file.puts "  - text: #{t['text']}" }
-    end
+      file.puts "responses:"
+  domain_data["responses"].each do |resp, texts|
+    file.puts "  #{resp}:"
+    texts.each { |t| file.puts "    - text: #{t['text']}" } # thụt 4 space
+  end
+
 
     unless domain_data["actions"].empty?
       file.puts "actions:"

@@ -37,8 +37,7 @@
     //   iframe.style.height = '700px';
     // });
 
-
-    // else 
+    // else
     // {
     //   // Phần tử không có lớp .show
     //   console.log('Phần tử không có lớp .show');
@@ -63,10 +62,27 @@
         const name = document.getElementById("name")?.value || "";
         const phone = document.getElementById("phone")?.value || "";
 
-        // Cập nhật src iframe khi có thông tin
-        iframe.src = `http://localhost:3000/embed_chat?bot_identifier=${encodeURIComponent(
+        // Xoá iframe cũ nếu có
+        const oldIframe = document.querySelector("iframe[data-chatbot]");
+        if (oldIframe) oldIframe.remove();
+
+        // Tạo iframe mới
+        const newIframe = document.createElement("iframe");
+        newIframe.setAttribute("data-chatbot", "true"); // để quản lý
+        newIframe.style.position = "fixed";
+        newIframe.style.bottom = "20px";
+        newIframe.style.right = "20px";
+        newIframe.style.width = "500px";
+        newIframe.style.height = "700px";
+        newIframe.style.zIndex = "-1";
+        newIframe.style.border = "none";
+
+        // Chỉ cần truyền query string, không cần postMessage nữa
+        newIframe.src = `http://localhost:3000/embed_chat?bot_identifier=${encodeURIComponent(
           botIdentifier
         )}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
+
+        document.body.appendChild(newIframe);
       });
     }
   });
