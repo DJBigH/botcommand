@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root "bots#index"
+  root "dashbroad#index"
 
   resources :bots, only: [:index, :new, :create, :show] do
     member do
