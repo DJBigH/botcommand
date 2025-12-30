@@ -28,10 +28,10 @@
           <%= f.text_area :answer, class: "form-control", rows: 7 %>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <%= f.label :category, "Danh mục" %>
           <%= select_tag :category, options_for_select(PromptCategory.pluck(:name) + ['Khác']), include_blank: "Chọn danh mục", class: "form-control", id: "category_select" %>
-        </div>
+        </div> -->
 
         <div class="form-group" id="custom_category_input" style="display: none;">
           <%= label_tag :custom_category, "Nhập danh mục mới:" %>

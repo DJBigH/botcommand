@@ -7,10 +7,7 @@
     console.error("Thiếu data-bot!");
     return;
   }
-  // $(".chatAi-block.show").addEventListener("DOMContentLoaded", () => {
-  //   iframe.style.width = "500px";
-  //   iframe.style.height = "800px";
-  // })
+
   window.addEventListener("DOMContentLoaded", () => {
     const iframe = document.createElement("iframe");
     iframe.style.position = "fixed";
@@ -18,71 +15,49 @@
     iframe.style.right = "20px";
     iframe.style.width = "500px";
     iframe.style.height = "700px";
-    iframe.style.zIndex = "-1";
+    iframe.style.zIndex = "1";
     iframe.style.border = "none";
-
-    // $('#btn-chat').click(function (event) {
-    //   iframe.classList.add("add");
-    //   console.log("da add")
-    //   iframe.style.width = "100px";
-    //   iframe.style.height = "700px";
-    // })
-
-    // var btnChat = document.getElementById('btn-chat');
-    // btnChat.addEventListener('click', function () {
-    //   // var iframe = document.querySelector('iframe');
-    //   iframe.classList.add('add');
-    //   console.log("da add");
-    //   iframe.style.width = '100px';
-    //   iframe.style.height = '700px';
-    // });
-
-    // else
-    // {
-    //   // Phần tử không có lớp .show
-    //   console.log('Phần tử không có lớp .show');
-    // }
-    // Truyền botIdentifier vào URL
+    // URL mặc định
     iframe.src = `http://localhost:3000/embed_chat?bot_identifier=${encodeURIComponent(
       botIdentifier
     )}`;
 
     document.body.appendChild(iframe);
 
-    // Nếu muốn truyền thêm dữ liệu sau khi iframe load, dùng postMessage
     iframe.onload = () => {
       iframe.contentWindow.postMessage({ botIdentifier: botIdentifier }, "*");
     };
 
-    // Xử lý form chat widget (ví dụ khi submit form)
+    // 👉 Nút bật/tắt widget chat
+    const btnChat = document.getElementById("btn-chat");
+    if (btnChat) {
+      btnChat.addEventListener("click", () => {
+        const opened = iframe.classList.toggle("open");
+
+        if (opened) {
+          // 🔵 Hiện chat + cho click
+          iframe.style.pointerEvents = "auto";
+          iframe.style.opacity = "1";
+        } else {
+          // 🔴 Tắt chat + không cho click → không chặn UI
+          iframe.style.pointerEvents = "none";
+          iframe.style.opacity = "0";
+        }
+      });
+    }
+
+    // Form submit → load lại iframe
     const chatForm = document.getElementById("chat-form");
     if (chatForm) {
       chatForm.addEventListener("submit", (e) => {
         e.preventDefault();
+
         const name = document.getElementById("name")?.value || "";
         const phone = document.getElementById("phone")?.value || "";
 
-        // Xoá iframe cũ nếu có
-        const oldIframe = document.querySelector("iframe[data-chatbot]");
-        if (oldIframe) oldIframe.remove();
-
-        // Tạo iframe mới
-        const newIframe = document.createElement("iframe");
-        newIframe.setAttribute("data-chatbot", "true"); // để quản lý
-        newIframe.style.position = "fixed";
-        newIframe.style.bottom = "20px";
-        newIframe.style.right = "20px";
-        newIframe.style.width = "500px";
-        newIframe.style.height = "700px";
-        newIframe.style.zIndex = "-1";
-        newIframe.style.border = "none";
-
-        // Chỉ cần truyền query string, không cần postMessage nữa
-        newIframe.src = `http://localhost:3000/embed_chat?bot_identifier=${encodeURIComponent(
+        iframe.src = `http://localhost:3000/embed_chat?bot_identifier=${encodeURIComponent(
           botIdentifier
         )}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
-
-        document.body.appendChild(newIframe);
       });
     }
   });
