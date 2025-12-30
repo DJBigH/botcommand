@@ -96,8 +96,8 @@ class BotsController < ApplicationController
   update_stories_file(@bot)
   update_rules_file(@bot)
 
-  train_bot(@bot.path)
   stop_bot(@bot.port, @bot.action_port)
+  train_bot(@bot.path)
   @bot.update(status: "not_started")
 
   redirect_to bot_path(@bot), notice: "Train thành công! Bot đã sẵn sàng để khởi động."
