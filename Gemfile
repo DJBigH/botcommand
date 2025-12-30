@@ -64,3 +64,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# Excel, Google Sheets, and OpenOffice spreadsheet reader
+gem 'roo'
+

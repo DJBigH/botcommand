@@ -6,7 +6,7 @@ class BotsController < ApplicationController
   require "json"
 
 
-  before_action :set_bot, only: [ :show, :train, :add_prompt, :chat, :run, :stop ]
+  before_action :set_bot, only: [ :show, :train, :add_prompt, :chat, :run, :stop, :import_excel ]
 
   def index
   @bots = Bot.paginate(page: params[:page], per_page: 5)
@@ -87,6 +87,39 @@ class BotsController < ApplicationController
   end
   end
 
+  def import_excel
+    file = params[:file]
+
+    unless file.present?
+      redirect_to bot_path(@bot), alert: "Vui lòng chọn file Excel"
+      return
+    end
+
+    spreadsheet = Roo::Spreadsheet.open(file.path)
+    sheet = spreadsheet.sheet(0)
+
+    ActiveRecord::Base.transaction do
+      sheet.each_with_index(
+        question: "question",
+        answer: "answer",
+      ) do |row, index|
+        next if index == 0
+        next if row[:question].blank? || row[:answer].blank?
+
+        Prompt.create!(
+          question: row[:question],
+          answer: row[:answer],
+          bot: @bot
+        )
+      end
+    end
+
+    redirect_to bot_path(@bot), notice: "Import prompt từ Excel thành công!"
+    rescue => e
+    redirect_to bot_path(@bot), alert: "Lỗi import: #{e.message}"
+  end
+
+
 
   def train
   @bot.update(status: "training")
@@ -160,35 +193,26 @@ class BotsController < ApplicationController
   end
 
   # Tìm số thứ tự custom_intent lớn nhất hiện có
-  last_number = nlu_data["nlu"]
-                  .map { |i| i["intent"] }
-                  .grep(/^custom_intent_\d+$/)
-                  .map { |name| name.split("_").last.to_i }
-                  .max || 0
-
   bot.prompts.each do |prompt|
-    example_line = "- #{prompt.question.strip}"
+  intent_name = "custom_intent_#{prompt.id}"
+  example_line = "- #{prompt.question.strip}"
 
-    # Kiểm tra xem đã tồn tại intent nào chứa câu hỏi này chưa
-    existing_intent = nlu_data["nlu"].find do |intent|
-      intent["examples"].to_s.include?(example_line)
-    end
+  existing_intent = nlu_data["nlu"].find do |intent|
+    intent["intent"] == intent_name
+  end
 
-    if existing_intent
-      examples_lines = existing_intent["examples"].split("\n").map(&:strip)
-      unless examples_lines.include?(example_line)
-        examples_lines << example_line
-        existing_intent["examples"] = examples_lines.join("\n")
-      end
-    else
-      # Tạo intent mới với số tăng dần
-      last_number += 1
-      intent_name = "custom_intent_#{last_number}"
-      nlu_data["nlu"] << {
-        "intent" => intent_name,
-        "examples" => "#{example_line}\n"
-      }
+  if existing_intent
+    examples_lines = existing_intent["examples"].to_s.split("\n").map(&:strip)
+    unless examples_lines.include?(example_line)
+      examples_lines << example_line
+      existing_intent["examples"] = examples_lines.join("\n")
     end
+  else
+    nlu_data["nlu"] << {
+      "intent" => intent_name,
+      "examples" => "#{example_line}\n"
+    }
+  end
   end
 
   # Ghi lại file nlu.yml theo format chuẩn
